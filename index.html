@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Idol Taite Radar | アイドル被り・タイテ照合レーダー</title>
+  <meta name="description" content="複数アイドルのライブスケジュールを一元管理。対バンでの推し被りスコアや出番時間のギャップ判定（神タイテ/離れすぎ/重複）を瞬時にチェックできるオタク特化スマホWebアプリ">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-viewport">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Idol Taite Radar</h1>
+          <span class="brand-badge">タイテ照合＆被り判定</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btnQuickAdd" class="btn-icon-pulse" title="告知テキストをインポート">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Content Container -->
+    <main class="app-main" id="mainContent">
+
+      <!-- ================= 1. EVENTS VIEW (一覧・被りスコア) ================= -->
+      <section id="viewEvents" class="view-section active">
+        <!-- Filter bar -->
+        <div class="sticky-filter-wrapper">
+          <div class="quick-chip-scroll">
+            <button class="chip active" data-filter="all">すべて</button>
+            <button class="chip chip-fire" data-filter="overlap-multi">
+              <span class="chip-emoji">🔥</span> 被りあり (2組以上)
+            </button>
+            <button class="chip chip-god" data-filter="god-taite">
+              <span class="chip-emoji">🎯</span> 神タイテ (連続/良間隔)
+            </button>
+            <button class="chip" data-filter="rank-s">
+              <span class="chip-emoji">👑</span> Sランク出演
+            </button>
+            <button class="chip" data-filter="status-going">
+              <span class="chip-emoji">🎫</span> 参戦予定
+            </button>
+          </div>
+
+          <!-- Search & Date Bar -->
+          <div class="search-bar-row">
+            <div class="search-input-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="eventSearchInput" placeholder="イベント名・会場・グループ名で検索...">
+            </div>
+            <button class="btn-pill-compact" id="btnSortToggle" title="並び替え">
+              <span id="sortLabel">日付順</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 15l5 5 5-5M7 9l5-5 5 5"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Overlap Alert / Highlights banner -->
+        <div class="radar-summary-card" id="radarSummaryCard">
+          <div class="radar-summary-inner">
+            <div class="radar-icon-box">
+              <span class="radar-radar-ping"></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 3v9l6 3"></path>
+              </svg>
+            </div>
+            <div class="radar-summary-info">
+              <div class="radar-summary-title" id="radarSummaryTitle">推し重複ライブを検知中...</div>
+              <div class="radar-summary-desc" id="radarSummaryDesc">直近30日の対バンでAとBが被っているイベントを自動算出</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Cards Container -->
+        <div class="event-cards-list" id="eventsListContainer">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- ================= 2. CALENDAR VIEW (月間・日程被り) ================= -->
+      <section id="viewCalendar" class="view-section">
+        <div class="calendar-header-card">
+          <div class="cal-nav">
+            <button id="btnCalPrev" class="cal-nav-btn">&lt;</button>
+            <h2 id="calCurrentMonthTitle">2026年 10月</h2>
+            <button id="btnCalNext" class="cal-nav-btn">&gt;</button>
+          </div>
+          <div class="cal-legend">
+            <span class="legend-item"><span class="legend-dot dot-multi"></span>推し2組以上被り</span>
+            <span class="legend-item"><span class="legend-dot dot-single"></span>1組出演</span>
+            <span class="legend-item"><span class="legend-dot dot-going"></span>参戦確定</span>
+          </div>
+        </div>
+
+        <div class="calendar-grid-wrapper">
+          <div class="cal-weekdays">
+            <span class="sun">日</span>
+            <span>月</span>
+            <span>火</span>
+            <span>水</span>
+            <span>木</span>
+            <span>金</span>
+            <span class="sat">土</span>
+          </div>
+          <div class="cal-days-grid" id="calDaysGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Selected Day Events Detail Sheet -->
+        <div class="cal-day-detail-box" id="calDayDetailBox">
+          <div class="day-detail-header">
+            <h3 id="calSelectedDayTitle">選択した日のイベント</h3>
+            <span class="badge-count" id="calSelectedDayCount">0件</span>
+          </div>
+          <div id="calSelectedDayEvents" class="cal-selected-events-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3. TAITE VERDICT VIEW (タイテ照合・出番判定) ================= -->
+      <section id="viewVerdict" class="view-section">
+        <div class="section-title-bar">
+          <div>
+            <h2>タイテ照合＆参戦判定</h2>
+            <p class="subtitle">「被っても出番が違ったら行かない」「神タイテなら行く」を自動診断</p>
+          </div>
+        </div>
+
+        <!-- Event Picker for Taite Analysis -->
+        <div class="taite-selector-card">
+          <label for="taiteEventSelect">照合するイベントを選択：</label>
+          <div class="custom-select-box">
+            <select id="taiteEventSelect">
+              <!-- Dynamically populated with events that have 2+ groups or active schedules -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Verdict Display Board -->
+        <div id="taiteVerdictBoard">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- ================= 4. GROUPS VIEW (推しグループ管理・優先度) ================= -->
+      <section id="viewGroups" class="view-section">
+        <div class="section-title-bar">
+          <div>
+            <h2>マイ・推しグループ</h2>
+            <p class="subtitle">優先度（S/A/B）と推しカラーを設定して被り度を算出</p>
+          </div>
+          <button class="btn-primary-compact" id="btnOpenAddGroupModal">＋ グループ追加</button>
+        </div>
+
+        <div class="rank-guide-banner">
+          <div class="rank-badge-item rank-s">
+            <span class="tag">S</span>
+            <span class="desc">本命（単独でも行く）</span>
+          </div>
+          <div class="rank-badge-item rank-a">
+            <span class="tag">A</span>
+            <span class="desc">準推し（被ったら行きたい）</span>
+          </div>
+          <div class="rank-badge-item rank-b">
+            <span class="tag">B</span>
+            <span class="desc">気になる（タイテ良ければ）</span>
+          </div>
+        </div>
+
+        <div class="groups-list" id="groupsListContainer">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Data Persistence & Backup Card -->
+        <div class="storage-manage-card">
+          <div class="storage-status-header">
+            <div class="storage-status-badge">
+              <span class="status-dot-pulse"></span>
+              <span>ブラウザ自動保存: 有効 (LocalStorage)</span>
+            </div>
+            <span class="storage-info-text">登録した推し・タイテは端末内に自動保持されます</span>
+          </div>
+          <div class="storage-actions-grid">
+            <button type="button" class="btn-storage-action" id="btnExportData" title="現在の設定とイベントをJSONで保存">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              バックアップ保存 (JSON)
+            </button>
+            <label class="btn-storage-action" style="margin-bottom:0; cursor:pointer;" title="JSONファイルから推し設定を復元">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              バックアップ復元
+              <input type="file" id="importFileInput" accept=".json" style="display:none;">
+            </label>
+            <button type="button" class="btn-storage-action" id="btnDeleteAllEvents" style="color:var(--accent-red);" title="登録されているイベントを全消去">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              イベントを全削除する (初期デモを消す)
+            </button>
+            <button type="button" class="btn-storage-action btn-storage-reset" id="btnClearAllData" title="イベントもグループも空にして完全なまっさらから始める">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+              </svg>
+              まっさらな状態にする (全データクリア)
+            </button>
+            <button type="button" class="btn-storage-action" id="btnResetDefaultData" style="opacity:0.6;" title="最初のサンプルデータに戻す">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+              サンプルデモに戻す
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 5. QUICK IMPORT VIEW (告知文コピペ・自動巡回) ================= -->
+      <section id="viewImport" class="view-section">
+        <div class="section-title-bar">
+          <div>
+            <h2>自動取得 ＆ 告知解析</h2>
+            <p class="subtitle">推しの公式X告知 ➔ チケットサイト（TIGET等）を自動巡回して取得！</p>
+          </div>
+        </div>
+
+        <!-- 1. Twitter(X) -> Ticket Crawler Card -->
+        <div class="crawler-feature-card">
+          <div class="crawler-header">
+            <div class="crawler-icon-box">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; color:#fff;">公式X ➔ チケットサイト自動巡回</h3>
+              <p style="font-size:11px; color:var(--text-muted);">推し告知ポスト内のTIGET/TicketDiveリンクを自動検知して一括取得</p>
+            </div>
+          </div>
+
+          <div class="crawler-body">
+            <button class="btn-primary" id="btnTriggerAutoCrawl" style="width:100%;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+              </svg>
+              今すぐ推しのXとチケットサイトを自動巡回する
+            </button>
+            <div id="crawlLogBox" class="crawl-log-box hidden">
+              <div class="crawl-log-title">巡回ステータス・実行ログ：</div>
+              <div id="crawlLogContent" class="crawl-log-content"></div>
+            </div>
+
+            <!-- Rule Breakdown Guide -->
+            <div class="rule-guide-card">
+              <div class="rule-guide-title">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                告知判定フィルターの仕組み（どうやって判断しているか）
+              </div>
+              <div class="rule-columns">
+                <div class="rule-col">
+                  <span class="rule-tag tag-pass">✅ 採用判定（告知シグナル）</span>
+                  <ul>
+                    <li>チケットURL（tiget.net, ticketdive, livepocket等）</li>
+                    <li>【出演情報】【告知】【タイテ】フェス名</li>
+                    <li>OPEN/START時間、出番時間（14:20-14:45等）</li>
+                    <li>未来の日付表記（11/14(土)など）</li>
+                  </ul>
+                </div>
+                <div class="rule-col">
+                  <span class="rule-tag tag-skip">🚫 自動除外（ノイズスキップ）</span>
+                  <ul>
+                    <li>メンバー自撮りRT（チケットURL・日時なし）</li>
+                    <li>グッズ受注・雑誌掲載の宣伝ポスト</li>
+                    <li>終演後の過去形お礼ポスト</li>
+                    <li>ライブ情報を含まない日常リプライ</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Real Ticket Site Search & Pick (4大チケットサイト一括検索) -->
+        <div class="crawler-feature-card" style="margin-top:14px; border:1px solid rgba(0, 229, 255, 0.35); background: rgba(0, 229, 255, 0.04);">
+          <div class="crawler-header">
+            <div class="crawler-icon-box" style="background: rgba(0, 229, 255, 0.15); color: var(--accent-cyan);">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size:14px; font-weight:800; color:#fff;">4大チケットサイトから実在ライブを一括検索＆ピック</h3>
+              <p style="font-size:11px; color:var(--text-muted);">TIGET / TicketDive / LivePocket / PayLove の4社を横断して一括取得！</p>
+              <div style="font-size:10px; color:var(--text-muted); margin-top:3px; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                <span style="color:#10b981; font-weight:700;">🏢 主催者ページ連携:</span>
+                <span style="background:rgba(255,255,255,0.06); padding:1px 6px; border-radius:4px; color:#fff;">株式会社SCOT (livepocket.jp/p/i39be)</span>
+                <span style="color:#a855f7; font-weight:700;">⚡ PayLove API直結</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:10px;">
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:6px;">登録中の推しグループをワンタップ検索：</div>
+            <div id="quickGroupSearchPills" style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+              <!-- Dynamically populated pills -->
+            </div>
+
+            <div style="display:flex; gap:8px;">
+              <input type="text" id="inpTicketSearchKeyword" placeholder="アイドル名（例: ネコプラ、てるてる、シュピネス、アオノシグナル 等）を入力..." style="flex:1; height:38px; font-size:12px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.18); border-radius:8px; padding:0 12px; color:#fff;">
+              <button class="btn-primary" id="btnSearchTicketSite" style="flex-shrink:0; padding:0 16px; font-size:12px; height:38px;">
+                4サイト一括検索
+              </button>
+            </div>
+
+            <!-- Search Results Area -->
+            <div id="ticketSearchResultsContainer" style="margin-top:14px; display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span id="ticketSearchCount" style="font-size:12px; font-weight:700; color:var(--accent-cyan);">検索結果: 0件</span>
+                <button id="btnAddAllSearchedTickets" class="btn-pill-compact" style="display:none; font-size:11px; background:rgba(0,229,255,0.18); border:1px solid var(--accent-cyan); color:var(--accent-cyan); cursor:pointer;">すべてカレンダーに追加</button>
+              </div>
+              <div id="ticketSearchResultsList" style="display:flex; flex-direction:column; gap:8px; max-height:360px; overflow-y:auto; padding-right:4px;">
+                <!-- Result Cards -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Direct Ticket URL Scraper Card -->
+        <div class="crawler-feature-card" style="margin-top:12px;">
+          <div style="font-size:12px; font-weight:700; color:#fff; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+            <span>🌐</span> チケットURLから直接取得 (TIGET / TicketDive / LivePocket / PayLove)
+          </div>
+          <div style="display:flex; gap:8px;">
+            <input type="url" id="inpDirectTicketUrl" placeholder="https://livepocket.jp/e/... や https://paylove.org/events/..." style="flex:1; height:38px; font-size:12px;">
+            <button class="btn-secondary" id="btnScrapeTicketUrl" style="flex-shrink:0; padding:0 14px; font-size:12px;">取得</button>
+          </div>
+        </div>
+
+        <!-- 3. Manual Notice Paste Card -->
+        <div class="import-card" style="margin-top:14px;">
+          <div class="paste-zone">
+            <label for="importRawText" style="display:flex; justify-content:space-between; align-items:center;">
+              <span>告知テキスト / タイテ文コピペ解析</span>
+              <span style="font-size:10px; color:var(--text-dim);">手動ペースト用</span>
+            </label>
+            <textarea id="importRawText" rows="6" placeholder="【ライブ告知】
+2026/10/25(日) 『IDOL WAVE FES 2026』
+■会場：渋谷Spotify O-EAST
+■出演：かすみ草とステラ / FRUITS ZIPPER / 高嶺のなでしこ
+■時間：OPEN 11:30 / START 12:00
+■タイテ：
+13:10-13:35 かすみ草とステラ（終演後特典会 14:00-15:00）
+14:00-14:25 FRUITS ZIPPER（終演後特典会 15:00-16:00）"></textarea>
+          </div>
+          <div class="import-actions">
+            <button class="btn-secondary" id="btnFillSampleImport">📋 サンプル告知を入れる</button>
+            <button class="btn-primary" id="btnAnalyzeRawText">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+              解析して登録フォームへ
+            </button>
+          </div>
+        </div>
+
+        <div id="parseResultPreview" class="parse-result-card hidden">
+          <div class="preview-header">
+            <h4>解析結果プレビュー</h4>
+            <span class="preview-badge" id="parseStatusBadge">自動抽出成功</span>
+          </div>
+          <div class="preview-body" id="parsePreviewContent"></div>
+          <div class="preview-buttons">
+            <button class="btn-outline" id="btnEditBeforeSave">内容を調整する</button>
+            <button class="btn-success" id="btnConfirmImportSave">この内容でイベント登録！</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (Thumb friendly for mobile) -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-target="viewEvents">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+            <path d="M8 2v4M16 2v4"></path>
+          </svg>
+        </div>
+        <span class="nav-label">被り一覧</span>
+      </button>
+
+      <button class="nav-item" data-target="viewCalendar">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+            <circle cx="8" cy="14" r="1.5"></circle>
+            <circle cx="12" cy="14" r="1.5"></circle>
+            <circle cx="16" cy="14" r="1.5"></circle>
+            <circle cx="12" cy="18" r="1.5"></circle>
+          </svg>
+        </div>
+        <span class="nav-label">カレンダー</span>
+      </button>
+
+      <button class="nav-item nav-item-highlight" data-target="viewVerdict">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <span class="nav-label">タイテ照合</span>
+      </button>
+
+      <button class="nav-item" data-target="viewImport">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="12" y1="18" x2="12" y2="12"></line>
+            <line x1="9" y1="15" x2="15" y2="15"></line>
+          </svg>
+        </div>
+        <span class="nav-label">告知読取</span>
+      </button>
+
+      <button class="nav-item" data-target="viewGroups">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <span class="nav-label">推し設定</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- 1. Event Detail & Taite Editor Modal -->
+  <div id="modalEventDetail" class="modal-backdrop">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="modal-header">
+        <h3 id="modalEventTitle">イベント詳細</h3>
+        <button class="btn-close" id="btnCloseEventModal">&times;</button>
+      </div>
+      <div class="modal-scroll-body" id="modalEventBody">
+        <!-- Content dynamically injected -->
+      </div>
+      <div class="modal-footer" id="modalEventFooter">
+        <!-- Footer buttons dynamically injected -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Group Add/Edit Modal -->
+  <div id="modalGroupForm" class="modal-backdrop">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="modal-header">
+        <h3 id="modalGroupTitle">推しグループ登録</h3>
+        <button class="btn-close" id="btnCloseGroupModal">&times;</button>
+      </div>
+      <div class="modal-scroll-body">
+        <form id="formGroup">
+          <input type="hidden" id="groupEditId">
+          <div class="form-group">
+            <label for="groupName">グループ名 *</label>
+            <input type="text" id="groupName" required placeholder="例: かすみ草とステラ">
+          </div>
+          <div class="form-group">
+            <label>推し優先度ランク *</label>
+            <div class="rank-radio-group">
+              <label class="rank-radio-btn rank-s">
+                <input type="radio" name="groupRank" value="S" checked>
+                <div class="rank-box">
+                  <span class="big-rank">S</span>
+                  <span class="desc">本命（単独でも行く）</span>
+                </div>
+              </label>
+              <label class="rank-radio-btn rank-a">
+                <input type="radio" name="groupRank" value="A">
+                <div class="rank-box">
+                  <span class="big-rank">A</span>
+                  <span class="desc">準推し（被ったら行く）</span>
+                </div>
+              </label>
+              <label class="rank-radio-btn rank-b">
+                <input type="radio" name="groupRank" value="B">
+                <div class="rank-box">
+                  <span class="big-rank">B</span>
+                  <span class="desc">気になる（タイテ次第）</span>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="groupColor">メンバーカラー / テーマカラー</label>
+            <div class="color-picker-row">
+              <input type="color" id="groupColor" value="#ff2a85">
+              <span id="colorHexLabel">#ff2a85</span>
+              <div class="quick-color-presets">
+                <button type="button" class="preset-color" style="background:#ff2a85" data-color="#ff2a85"></button>
+                <button type="button" class="preset-color" style="background:#00e5ff" data-color="#00e5ff"></button>
+                <button type="button" class="preset-color" style="background:#a855f7" data-color="#a855f7"></button>
+                <button type="button" class="preset-color" style="background:#ffb703" data-color="#ffb703"></button>
+                <button type="button" class="preset-color" style="background:#10b981" data-color="#10b981"></button>
+                <button type="button" class="preset-color" style="background:#3b82f6" data-color="#3b82f6"></button>
+                <button type="button" class="preset-color" style="background:#f43f5e" data-color="#f43f5e"></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="groupTwitter">公式X (旧Twitter) アカウント (@ID)</label>
+            <div style="position:relative; display:flex; align-items:center;">
+              <span style="position:absolute; left:12px; color:var(--accent-cyan); font-weight:bold; font-size:13px;">@</span>
+              <input type="text" id="groupTwitter" placeholder="kasumi_staff" style="padding-left:28px;">
+            </div>
+            <div style="font-size:10px; color:var(--text-dim); margin-top:3px;">※告知・チケットURLの自動巡回時にこのアカウントを監視します</div>
+          </div>
+          <div class="form-group">
+            <label for="groupMemo">メモ（推しメン、楽曲、公式URL等）</label>
+            <input type="text" id="groupMemo" placeholder="例: 吉川実早 推し / 青春系楽曲">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline" id="btnCancelGroup">キャンセル</button>
+        <button type="submit" form="formGroup" class="btn-primary" id="btnSaveGroup">保存する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Manual Event Add / Edit Modal -->
+  <div id="modalEventForm" class="modal-backdrop">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="modal-header">
+        <h3 id="modalEventFormTitle">イベント登録・編集</h3>
+        <button class="btn-close" id="btnCloseEventFormModal">&times;</button>
+      </div>
+      <div class="modal-scroll-body">
+        <form id="formEvent">
+          <input type="hidden" id="eventEditId">
+          <div class="form-group">
+            <label for="evTitle">イベント名 *</label>
+            <input type="text" id="evTitle" required placeholder="例: SHIBUYA IDOL FESTIVAL">
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="evDate">開催日 *</label>
+              <input type="date" id="evDate" required>
+            </div>
+            <div class="form-group">
+              <label for="evVenue">会場 *</label>
+              <input type="text" id="evVenue" required placeholder="例: Spotify O-EAST">
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="evOpen">開場 (OPEN)</label>
+              <input type="time" id="evOpen" value="11:30">
+            </div>
+            <div class="form-group">
+              <label for="evStart">開演 (START)</label>
+              <input type="time" id="evStart" value="12:00">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>参戦意向ステータス</label>
+            <div class="status-radio-group">
+              <label class="status-pill">
+                <input type="radio" name="evStatus" value="going">
+                <span>🎫 参戦確定</span>
+              </label>
+              <label class="status-pill">
+                <input type="radio" name="evStatus" value="considering" checked>
+                <span>🤔 タイテ次第・検討</span>
+              </label>
+              <label class="status-pill">
+                <input type="radio" name="evStatus" value="skip">
+                <span>🙅 見送り</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>出演推しグループとタイテ設定：</label>
+            <div id="eventGroupsFormContainer" class="event-groups-form-container">
+              <!-- Checkboxes for registered groups + time inputs -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="evUrl">チケット / 告知URL</label>
+            <input type="url" id="evUrl" placeholder="https://tiget.net/events/...">
+          </div>
+          <div class="form-group">
+            <label for="evNotes">メモ</label>
+            <textarea id="evNotes" rows="2" placeholder="チケット発券番号、物販レギュレーションなど"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline" id="btnCancelEventForm">キャンセル</button>
+        <button type="submit" form="formEvent" class="btn-primary" id="btnSaveEventForm">イベントを保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

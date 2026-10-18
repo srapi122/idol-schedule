@@ -1,0 +1,19 @@
+{
+  "name": "idol-schedule-app",
+  "version": "1.0.0",
+  "description": "推し被り・タイテ照合レーダー & スケジュール管理",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "idol",
+    "schedule",
+    "timetable"
+  ],
+  "author": "",
+  "license": "ISC"
+}
