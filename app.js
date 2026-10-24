@@ -216,32 +216,27 @@ class IdolRadarApp {
     this.render();
     this.syncStateWithAntigravity('アプリ初期起動・状態同期');
 
-    // Auto-sync & enrich multi-group schedules from server state
-    fetch('/current_state.json')
+    // Auto-sync shared cloud state from GitHub repository across all devices
+    fetch('/api/state')
       .then(res => res.json())
-      .then(data => {
-        if (data && Array.isArray(data.events) && data.events.length > 0) {
-          let updated = false;
-          data.events.forEach(serverEv => {
-            const localEv = this.events.find(e => 
-              (e.url && serverEv.url && e.url === serverEv.url) || 
-              (e.title === serverEv.title && e.date === serverEv.date)
-            );
-            if (localEv) {
-              if (serverEv.schedules) {
-                // Sync clean data and all groups from server
-                localEv.schedules = serverEv.schedules;
-                localEv.performers = serverEv.performers || localEv.performers;
-                localEv.notes = serverEv.notes || localEv.notes;
-                updated = true;
-              }
-            } else if (serverEv.url && (serverEv.url.includes('ring_1018') || serverEv.url.includes('ring1018'))) {
-              this.events.push(serverEv);
-              updated = true;
-            }
-          });
-          if (updated) {
-            this.saveEvents('サーバー最新タイテと推しグループ統合');
+      .then(result => {
+        const data = result.data || result;
+        if (data && (Array.isArray(data.groups) || Array.isArray(data.events))) {
+          let needsRender = false;
+          // Sync groups if available
+          if (Array.isArray(data.groups) && data.groups.length > 0) {
+            this.groups = data.groups;
+            localStorage.setItem(STORAGE_KEY_GROUPS, JSON.stringify(this.groups));
+            needsRender = true;
+          }
+          // Sync events if available
+          if (Array.isArray(data.events) && data.events.length > 0) {
+            this.events = data.events;
+            localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(this.events));
+            needsRender = true;
+          }
+          if (needsRender) {
+            console.log('[Cloud Sync] Loaded shared state from GitHub storage');
             this.render();
           }
         }
@@ -900,33 +895,50 @@ https://tiget.net/events/sample-nov15`;
     renderPills();
   }
 
-  addTicketEventToSchedule(ev, triggerRender = true) {
+  isGroupActuallyInEvent(groupName, ev) {
+    if (!groupName || !ev) return false;
     const cleanStr = (s) => (s || '').toLowerCase().replace(/[\s\.\*＊!！]/g, '');
+    const cleanGroup = cleanStr(groupName);
 
-    // Match all registered idol groups that perform in this event
-    const matchedGroups = this.groups.filter(g => {
-      const gKey = cleanStr(g.name);
-      if (!gKey) return false;
-      // 1. Matched group string
-      if (ev.matchedGroup) {
-        const mKey = cleanStr(ev.matchedGroup);
-        if (mKey.includes(gKey) || gKey.includes(mKey)) return true;
-      }
-      // 2. Performers array
-      if (Array.isArray(ev.performers) && ev.performers.length > 0) {
-        const inPerf = ev.performers.some(p => {
-          const pKey = cleanStr(p);
-          return pKey.includes(gKey) || gKey.includes(pKey);
-        });
-        if (inPerf) return true;
-      }
-      // 3. Title check
-      if (ev.title) {
-        const tKey = cleanStr(ev.title);
-        if (tKey.includes(gKey)) return true;
-      }
-      return false;
-    });
+    let regexes = [];
+    if (cleanGroup.includes('falench') || cleanGroup.includes('ファレンチ')) {
+      regexes = [/\bFalench\.?\b/i, /ファレンチ/];
+    } else if (cleanGroup.includes('jyapon') || cleanGroup.includes('ジャポン')) {
+      regexes = [/SUPER\s*[\*☆]?\s*JYAPON/i, /スーパージャポン/i, /すーぱーじゃぽん/i];
+    } else if (cleanGroup.includes('てるてる')) {
+      regexes = [/アイテムはてるてるのみ/, /てるてるのみ/, /てるてる/];
+    } else if (cleanGroup.includes('ネコプラ')) {
+      regexes = [/ネコプラ/];
+    } else if (cleanGroup.includes('カタコト') || cleanGroup.includes('katacoto')) {
+      regexes = [/KATACOTO[\s\*＊]*BANK/i, /カタコトバンク/];
+    } else if (cleanGroup.includes('真骨頂') || cleanGroup.includes('しんこっちょう')) {
+      regexes = [/にっぽん[！!]\s*真骨頂/, /真骨頂/];
+    } else if (cleanGroup.includes('ネクスタリア') || cleanGroup.includes('nextaria')) {
+      regexes = [/ネクスタリア/, /\bnextaria\b/i];
+    } else if (cleanGroup.includes('アオノシグナル')) {
+      regexes = [/アオノシグナル/, /青のシグナル/];
+    } else {
+      const escaped = groupName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      regexes = [new RegExp(escaped, 'i')];
+    }
+
+    if (ev.title && regexes.some(r => r.test(ev.title))) return true;
+    if (Array.isArray(ev.performers) && ev.performers.length > 0) {
+      if (ev.performers.some(p => regexes.some(r => r.test(p)))) return true;
+    }
+    if (ev.notes && regexes.some(r => r.test(ev.notes))) return true;
+    return false;
+  }
+
+  addTicketEventToSchedule(ev, triggerRender = true) {
+    // Strictly filter registered groups that ACTUALLY perform in this event
+    const matchedGroups = this.groups.filter(g => this.isGroupActuallyInEvent(g.name, ev));
+
+    // If no registered group performs in this event, DISCARD it completely
+    if (matchedGroups.length === 0) {
+      console.log(`[DISCARD] Non-relevant event skipped: ${ev.title}`);
+      return;
+    }
 
     const dMatch = (ev.date || '').match(/(\d{4})[年\/-](\d{1,2})[月\/-](\d{1,2})/);
     const normalizedDate = dMatch ? `${dMatch[1]}-${String(dMatch[2]).padStart(2, '0')}-${String(dMatch[3]).padStart(2, '0')}` : ev.date;
