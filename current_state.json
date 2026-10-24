@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 16:20:36",
-  "lastAction": "アプリ初期起動・状態同期",
-  "totalGroups": 11,
-  "totalEvents": 27,
+  "syncedAt": "2026/10/24 16:20:49",
+  "lastAction": "イベント更新",
+  "totalGroups": 10,
+  "totalEvents": 22,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -83,14 +83,6 @@
       "rank": "A",
       "color": "#ff2a85",
       "memo": ""
-    },
-    {
-      "id": "grp-1792826366770",
-      "name": "きゅんぱに！",
-      "twitter": "kyunpani",
-      "rank": "B",
-      "color": "#10b981",
-      "memo": ""
     }
   ],
   "events": [
@@ -129,10 +121,7 @@
       "url": "https://livepocket.jp/e/rinka-last1024",
       "site": "LivePocket",
       "performers": [
-        "SUPER JYAPON",
-        "食べ物持込み禁止",
-        "モッシュ",
-        "リフト等禁止"
+        "SUPER JYAPON"
       ],
       "notes": "LivePocket連携 (SUPER JYAPON)",
       "schedules": [
@@ -170,84 +159,6 @@
       ]
     },
     {
-      "id": "lp-shibuya1024",
-      "title": "ブループラネットライブ vol.81",
-      "date": "2026-10-24",
-      "venue": "渋谷近未来会館",
-      "openTime": "11:50",
-      "startTime": "12:05",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/shibuya1024",
-      "site": "LivePocket",
-      "performers": [
-        "ぶっとび！パンデミック",
-        "ネコプラpixx.",
-        "Falench.",
-        "にっぽん！真骨頂",
-        "SUPER JYAPON"
-      ],
-      "notes": "LivePocket連携 (Falench., SUPER JYAPON, にっぽん！真骨頂)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        },
-        {
-          "groupId": "grp-1792289674377",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        },
-        {
-          "groupId": "grp-1792292767100",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-shibuya-1024",
-      "title": "すこフェス Day10",
-      "date": "2026-10-24",
-      "venue": "渋谷近未来会館",
-      "openTime": "18:40",
-      "startTime": "18:55",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/shibuya-1024",
-      "site": "LivePocket",
-      "performers": [
-        "ぶっとび！パンデミック",
-        "ネコプラpixx.",
-        "Falench.",
-        "にっぽん！真骨頂",
-        "BANKURUWASE!!",
-        "チルミチル"
-      ],
-      "notes": "LivePocket連携 (Falench., にっぽん！真骨頂)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        },
-        {
-          "groupId": "grp-1792292767100",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
       "id": "lp-ring-1025",
       "title": "Falench.単独公演『ハロウィン編』",
       "date": "2026-10-25",
@@ -257,10 +168,7 @@
       "status": "considering",
       "url": "https://livepocket.jp/e/ring-1025",
       "site": "LivePocket",
-      "performers": [
-        "Falench.",
-        "飲酒禁止"
-      ],
+      "performers": [],
       "notes": "LivePocket連携 (Falench.)",
       "schedules": [
         {
@@ -283,13 +191,7 @@
       "url": "https://livepocket.jp/e/roka1025",
       "site": "LivePocket",
       "performers": [
-        "アイテムはてるてるのみ",
-        "アイテムはてるてるのみ  ▼料金：優先3500円",
-        "通常2000円",
-        "新規500円",
-        "START：17:00",
-        "17:30  ▼料金：優先6000円",
-        "通常3000円"
+        "アイテムはてるてるのみ"
       ],
       "notes": "LivePocket連携 (アイテムはてるてるのみ)",
       "schedules": [
@@ -341,11 +243,7 @@
         "LiVREAL",
         "spiralia",
         "君とのシナリオ",
-        "恋に落ちる確率は限りなく低いが0じゃない",
-        "&nbsp; buGG",
-        "&amp;CUTE",
-        "JumpingKiss&nbsp;",
-        "恋に落ちる確率は限りなく低いが0じゃない<"
+        "恋に落ちる確率は限りなく低いが0じゃない"
       ],
       "notes": "LivePocket連携 (KATACOTO*BANK, アイテムはてるてるのみ, にっぽん！真骨頂)",
       "schedules": [
@@ -397,30 +295,6 @@
       ]
     },
     {
-      "id": "paylove-1788",
-      "title": "アイドル過剰摂取",
-      "date": "2026-11-03",
-      "venue": "KMAパラダイスホール（池尻）",
-      "openTime": "12:00",
-      "startTime": "04:00",
-      "status": "considering",
-      "url": "https://paylove.org/events/E24E65",
-      "site": "PayLove",
-      "performers": [
-        "I'Rink、ARLEY×EARLY、AISTEAL、Cent Heaven、SoRaLis、大スッキ♡新党！、るるぱにっく!!、サイレントフィルム、spiralia、Claire♡Dolls、jamstep、めいどinみんな、世亜なごり×宮田くるみ、Anluce♡Sugar、あいどっぐる、ツヅリカ、アオハルブレイブ、Litmelt、キュン！？恋堕ちキューピッド、Panic Monster !n Wonderland、傾奇隊、夜とメルク"
-      ],
-      "notes": "PayLove連携 (アオハルブレイブ)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289697131",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
       "id": "td-lub_tune_1105",
       "title": "ネクスタリア定期公演「Luv-Tune」TRACK.06",
       "date": "2026-11-05",
@@ -460,10 +334,9 @@
         "アップアップガールズ(仮)",
         "GANGDEMIC",
         "桃色革命",
-        "SUPER JYAPON",
-        "\">出演者"
+        "SUPER JYAPON"
       ],
-      "notes": "LivePocket連携 (アイテムはてるてるのみ, SUPER JYAPON)",
+      "notes": "LivePocket連携 (アイテムはてるてるのみ)",
       "schedules": [
         {
           "groupId": "grp-1792289628663",
@@ -491,72 +364,11 @@
       "status": "considering",
       "url": "https://livepocket.jp/e/selepri_1108",
       "site": "LivePocket",
-      "performers": [
-        "MATE×MATE!",
-        "iRiNE",
-        "UNDO",
-        "スプスラッシュ",
-        "ミルフィオーレ",
-        "Re:IDOL",
-        "I MY ME MINE",
-        "Aurora",
-        "As a Cutie Pomeranian",
-        "アストレイル",
-        "UNBS",
-        "「いつかのネバーランド」",
-        "泡沫パーティーズ",
-        "【eN】",
-        "オカシリゾート",
-        "KATACOTO*BANK",
-        "Kitty_z",
-        "君とのシナリオ",
-        "キュン!?恋堕ちキューピッド",
-        "CoTei",
-        "スーパーベイビーズ",
-        "透色ドロップ",
-        "トウトイナ。",
-        "NORMiL",
-        "ParaLulu",
-        "ファーストプレイリスト",
-        "ぶっとび！パンデミック",
-        "べるべっとセンテンス",
-        "ベンジャス！",
-        "My_Stage",
-        "Melodys High",
-        "Rea Lis",
-        "ルルネージュ",
-        "KATA☆CHU",
-        "\">出演者"
-      ],
+      "performers": [],
       "notes": "LivePocket連携 (KATACOTO*BANK)",
       "schedules": [
         {
           "groupId": "grp-1792288011098",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-ring1108",
-      "title": "Past costume",
-      "date": "2026-11-08",
-      "venue": "渋谷RING",
-      "openTime": "12:00",
-      "startTime": "9:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/ring1108",
-      "site": "LivePocket",
-      "performers": [
-        "Falench.",
-        "飲酒禁止"
-      ],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -575,47 +387,12 @@
       "url": "https://livepocket.jp/e/selest_1115",
       "site": "LivePocket",
       "performers": [
-        "者",
-        "Rea Lis",
-        "アストレイル",
-        "スーパーベイビーズ",
-        "Payrin’s",
-        "魔訶不思議変革者-デスデス-",
-        "P1QUE",
-        "iCON!",
-        "アイドル革命",
-        "iRiNE",
-        "アキストゼネコ",
-        "alma",
-        "Kitty_z",
-        "キミトサクハナ",
-        "君とのシナリオ",
-        "コングラッチェ！",
-        "Drawry.",
-        "NiLUNLOCK",
-        "buGG",
-        "Panic Monster !n Wonderland",
-        "フィルフェリーチェ",
-        "べるべっとセンテンス",
-        "ミルフィオーレ",
-        "MATE×MATE!",
-        "LyricalPopParadox",
-        "mementoa",
-        "ネロ",
-        "アオハルブレイブ",
-        "\">出演者"
+        "者"
       ],
-      "notes": "LivePocket連携 (KATACOTO*BANK, アオハルブレイブ)",
+      "notes": "LivePocket連携 (KATACOTO*BANK)",
       "schedules": [
         {
           "groupId": "grp-1792288011098",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        },
-        {
-          "groupId": "grp-1792289697131",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -633,10 +410,7 @@
       "status": "considering",
       "url": "https://livepocket.jp/e/20261115big",
       "site": "LivePocket",
-      "performers": [
-        "びっくえんじぇる",
-        "\">出演者"
-      ],
+      "performers": [],
       "notes": "LivePocket連携 (びっくえんじぇる)",
       "schedules": [
         {
@@ -707,30 +481,6 @@
       "schedules": [
         {
           "groupId": "grp-1792289674377",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "td-revenge2man1129",
-      "title": "KATACOTO＊BANK×ぶっとび！パンデミック 2マンLIVE〜楽曲&amp;衣装交換編 リベンジマッチ〜",
-      "date": "2026-11-29",
-      "venue": "渋谷RING",
-      "openTime": "12:00",
-      "startTime": "12:30",
-      "status": "considering",
-      "url": "https://ticketdive.com/event/revenge2man1129",
-      "site": "TicketDive",
-      "performers": [
-        "KATACOTO*BANK"
-      ],
-      "notes": "TicketDive連携 (KATACOTO*BANK)",
-      "schedules": [
-        {
-          "groupId": "grp-1792288011098",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -858,9 +608,7 @@
       "status": "considering",
       "url": "https://livepocket.jp/e/aoharu1st-brave",
       "site": "LivePocket",
-      "performers": [
-        "アオハルブレイブ"
-      ],
+      "performers": [],
       "notes": "LivePocket連携 (アオハルブレイブ)",
       "schedules": [
         {
