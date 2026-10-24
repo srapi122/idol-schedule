@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 17:00:46",
+  "syncedAt": "2026/10/24 17:00:48",
   "lastAction": "イベント更新",
   "totalGroups": 11,
-  "totalEvents": 75,
+  "totalEvents": 74,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -185,7 +185,7 @@
       "performers": [
         "木ノ下凛花",
         "SUPER JYAPON",
-        "\">出演者"
+        "\">出��者"
       ],
       "notes": "LivePocket連携 (SUPER JYAPON)",
       "schedules": [
@@ -885,7 +885,7 @@
         "必ずキャンセルの手続きをお願い致します。〇記入の際は必ず",
         "ご予約様のお名前(お一人様必須)",
         "電話番号",
-        "お目当てのグループ名などの明記を必ず記載お願い致します。尚",
+        "お目当てのグループ名などの明記を必���記載お願い致します。尚",
         "1項目でも抜けてある場合は",
         "当日扱い対象となりますのでご注意ください。〇公演当日お一人様に複数のご予約がある場合はご予約分全てのご入場料金を頂くなどの処置を取らさせて頂きます。〇万が一",
         "チケットを誤ってご予約した際は",
@@ -2103,7 +2103,7 @@
         "整理番号順にて",
         "前方→一般→当日券の順となります。※開場開演時間は変更になる場合がございます。※再入場時1ドリンク代徴収となります。※ダイブ",
         "サーフ",
-        "リフ���",
+        "リ��ト",
         "モッシュ等危険な行為は一切禁止とさせていただきます。悪質な場合はご退場頂く場合がございます。※当日の状況によっては検温",
         "マスク着用",
         "他のお客さまへの過度な接触禁止など",
@@ -3291,28 +3291,6 @@
       "schedules": [
         {
           "groupId": "grp-1792288011098",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-sfjt2026-n",
-      "title": "SUPER FANTASY JAPAN TOUR 2026- UNCHARTED -&lt;名古屋公演&gt;",
-      "date": "2026-12-05",
-      "venue": "レジェンドホール（愛知県）",
-      "openTime": "12:00",
-      "startTime": "17:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/sfjt2026-n",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (SUPER JYAPON)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289674377",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
