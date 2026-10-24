@@ -8,6 +8,7 @@
 // ==========================================
 const STORAGE_KEY_GROUPS = 'idol_radar_groups_v1';
 const STORAGE_KEY_EVENTS = 'idol_radar_events_v1';
+const STORAGE_KEY_DISMISSED = 'idol_radar_dismissed_events_v1';
 
 // Initial Demo Groups
 const DEFAULT_GROUPS = [
@@ -197,6 +198,7 @@ const SAMPLE_EVENTS = [
 class IdolRadarApp {
   constructor() {
     this.groups = this.loadGroups();
+    this.dismissedEvents = this.loadDismissedEvents();
     this.events = this.loadEvents();
     this.activeFilter = 'all';
     this.currentSearch = '';
@@ -225,6 +227,12 @@ class IdolRadarApp {
         if (data && (Array.isArray(data.groups) || Array.isArray(data.events))) {
           let needsRender = false;
 
+          // 0. Merge dismissed events from cloud
+          if (Array.isArray(data.dismissedEvents)) {
+            data.dismissedEvents.forEach(id => this.dismissedEvents.add(id));
+            this.saveDismissedEvents();
+          }
+
           // 1. Smart merge groups: NEVER overwrite or delete locally added groups!
           if (Array.isArray(data.groups) && data.groups.length > 0) {
             const existingIds = new Set(this.groups.map(g => g.id));
@@ -248,7 +256,7 @@ class IdolRadarApp {
             }
           }
 
-          // 2. Smart merge events: NEVER overwrite or delete locally added events!
+          // 2. Smart merge events: NEVER resurrect user-deleted events!
           if (Array.isArray(data.events) && data.events.length > 0) {
             const existingUrls = new Set(this.events.map(e => e.url).filter(Boolean));
             const existingKeys = new Set(this.events.map(e => `${e.title}_${e.date}`));
@@ -257,6 +265,12 @@ class IdolRadarApp {
             data.events.forEach(cloudEv => {
               if (!cloudEv || !cloudEv.title) return;
               const key = `${cloudEv.title}_${cloudEv.date}`;
+              
+              // CRITICAL: If user explicitly deleted (dismissed) this event, NEVER resurrect it!
+              if (this.isEventDismissed(cloudEv)) {
+                return;
+              }
+
               const matchByUrl = cloudEv.url && existingUrls.has(cloudEv.url);
               const matchByKey = existingKeys.has(key);
 
@@ -288,6 +302,61 @@ class IdolRadarApp {
           this.syncStateWithAntigravity('双方向マージ同期');
         }
       }).catch(() => {});
+  }
+
+  loadDismissedEvents() {
+    try {
+      const data = localStorage.getItem(STORAGE_KEY_DISMISSED);
+      const arr = data ? JSON.parse(data) : [];
+      return new Set(Array.isArray(arr) ? arr : []);
+    } catch (e) {
+      return new Set();
+    }
+  }
+
+  saveDismissedEvents() {
+    try {
+      localStorage.setItem(STORAGE_KEY_DISMISSED, JSON.stringify([...this.dismissedEvents]));
+    } catch (e) {}
+  }
+
+  markEventDismissed(ev) {
+    if (!ev) return;
+    if (ev.id) this.dismissedEvents.add(ev.id);
+    if (ev.url) this.dismissedEvents.add(ev.url);
+    if (ev.title && ev.date) this.dismissedEvents.add(`${ev.title}_${ev.date}`);
+    this.saveDismissedEvents();
+  }
+
+  unmarkEventDismissed(ev) {
+    if (!ev) return;
+    if (ev.id) this.dismissedEvents.delete(ev.id);
+    if (ev.url) this.dismissedEvents.delete(ev.url);
+    if (ev.title && ev.date) this.dismissedEvents.delete(`${ev.title}_${ev.date}`);
+    this.saveDismissedEvents();
+  }
+
+  isEventDismissed(ev) {
+    if (!ev) return false;
+    const key = `${ev.title}_${ev.date}`;
+    return (ev.id && this.dismissedEvents.has(ev.id)) ||
+           (ev.url && this.dismissedEvents.has(ev.url)) ||
+           this.dismissedEvents.has(key);
+  }
+
+  deleteEvent(eventId) {
+    const target = this.events.find(e => e.id === eventId);
+    if (!target) return;
+
+    // 1. Mark as dismissed so neither cloud sync nor auto-crawler will EVER resurrect it!
+    this.markEventDismissed(target);
+
+    // 2. Remove from active events
+    this.events = this.events.filter(e => e.id !== eventId);
+    localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(this.events));
+    this.render();
+    this.showToast(`「${target.title}」を削除しました`);
+    this.syncStateWithAntigravity(`イベント削除: ${target.title}`);
   }
 
   loadGroups() {
@@ -326,6 +395,7 @@ class IdolRadarApp {
         body: JSON.stringify({
           groups: this.groups,
           events: this.events,
+          dismissedEvents: [...this.dismissedEvents],
           lastAction: action
         })
       }).catch(() => {});
@@ -904,6 +974,7 @@ https://tiget.net/events/sample-nov15`;
 
             const btnAdd = card.querySelector('.btn-add-ticket');
             btnAdd.addEventListener('click', () => {
+              this.unmarkEventDismissed(ev);
               this.addTicketEventToSchedule(ev);
               btnAdd.style.background = 'rgba(16,185,129,0.2)';
               btnAdd.style.borderColor = 'var(--accent-green)';
@@ -1033,6 +1104,12 @@ https://tiget.net/events/sample-nov15`;
   }
 
   addTicketEventToSchedule(ev, triggerRender = true) {
+    // If user explicitly deleted (dismissed) this event previously, NEVER resurrect it via crawler!
+    if (this.isEventDismissed(ev)) {
+      console.log(`[DISMISSED] User explicitly deleted this event. Skipping auto-crawl re-add: ${ev.title}`);
+      return;
+    }
+
     // Strictly filter registered groups that ACTUALLY perform in this event
     const matchedGroups = this.groups.filter(g => this.isGroupActuallyInEvent(g.name, ev));
 
@@ -1624,11 +1701,8 @@ https://tiget.net/events/sample-nov15`;
       if (btnDel) {
         btnDel.addEventListener('click', (e) => {
           e.stopPropagation();
-          if (confirm(`イベント「${event.title}」を削除しますか？`)) {
-            this.events = this.events.filter(ev => ev.id !== event.id);
-            this.saveEvents();
-            this.render();
-            this.showToast('イベントを削除しました');
+          if (confirm(`イベント「${event.title}」を削除しますか？\n※削除したイベントは自動巡回やリロードでも勝手に復活しません。`)) {
+            this.deleteEvent(event.id);
           }
         });
       }
