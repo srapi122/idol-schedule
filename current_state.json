@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 17:01:18",
+  "syncedAt": "2026/10/24 17:01:58",
   "lastAction": "イベント更新",
   "totalGroups": 11,
-  "totalEvents": 71,
+  "totalEvents": 70,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -885,7 +885,7 @@
         "必ずキャンセルの手続きをお願い致します。〇記入の際は必ず",
         "ご予約様のお名前(お一人様必須)",
         "電話番号",
-        "お目当てのグループ名などの明記を必���記載お願い致します。尚",
+        "お目当てのグループ名などの明記を必ず記載お願い致します。尚",
         "1項目でも抜けてある場合は",
         "当日扱い対象となりますのでご注意ください。〇公演当日お一人様に複数のご予約がある場合はご予約分全てのご入場料金を頂くなどの処置を取らさせて頂きます。〇万が一",
         "チケットを誤ってご予約した際は",
@@ -2568,7 +2568,7 @@
         "KATACOTO*BANK",
         "Kitty_z",
         "君とのシナリオ",
-        "キュン!?恋堕ちキューピッド",
+        "キュン!?��堕ちキューピッド",
         "CoTei",
         "スーパーベイビーズ",
         "透色ドロップ",
@@ -3118,28 +3118,6 @@
       "schedules": [
         {
           "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-soundgarden2026",
-      "title": "ART SOUND presents 【SOUND GARDEN 2026】 ART SOUND 15th Anniversary",
-      "date": "2026-11-28",
-      "venue": "Zephyr Hall / ReNY limited / RAD HALL / DIVA / RAD NINE（愛知県）",
-      "openTime": "12:00",
-      "startTime": "12:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/soundgarden2026",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (SUPER JYAPON)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289674377",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
