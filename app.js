@@ -216,29 +216,70 @@ class IdolRadarApp {
     this.render();
     this.syncStateWithAntigravity('アプリ初期起動・状態同期');
 
-    // Auto-sync shared cloud state from GitHub repository across all devices
+    // Auto-sync shared cloud state from GitHub repository (Smart non-destructive merge)
     fetch('/api/state')
       .then(res => res.json())
       .then(result => {
         const data = result.data || result;
         if (data && (Array.isArray(data.groups) || Array.isArray(data.events))) {
           let needsRender = false;
-          // Sync groups if available
+
+          // 1. Smart merge groups: NEVER overwrite or delete locally added groups!
           if (Array.isArray(data.groups) && data.groups.length > 0) {
-            this.groups = data.groups;
-            localStorage.setItem(STORAGE_KEY_GROUPS, JSON.stringify(this.groups));
-            needsRender = true;
+            const existingIds = new Set(this.groups.map(g => g.id));
+            const existingNames = new Set(this.groups.map(g => (g.name || '').toLowerCase().trim()));
+            let addedFromCloud = 0;
+
+            data.groups.forEach(cloudGrp => {
+              if (!cloudGrp || !cloudGrp.name) return;
+              const cleanName = cloudGrp.name.toLowerCase().trim();
+              if (!existingIds.has(cloudGrp.id) && !existingNames.has(cleanName)) {
+                this.groups.push(cloudGrp);
+                existingIds.add(cloudGrp.id);
+                existingNames.add(cleanName);
+                addedFromCloud++;
+              }
+            });
+
+            if (addedFromCloud > 0) {
+              localStorage.setItem(STORAGE_KEY_GROUPS, JSON.stringify(this.groups));
+              needsRender = true;
+            }
           }
-          // Sync events if available
+
+          // 2. Smart merge events: NEVER overwrite or delete locally added events!
           if (Array.isArray(data.events) && data.events.length > 0) {
-            this.events = data.events;
-            localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(this.events));
-            needsRender = true;
+            const existingUrls = new Set(this.events.map(e => e.url).filter(Boolean));
+            const existingKeys = new Set(this.events.map(e => `${e.title}_${e.date}`));
+            let addedEventsFromCloud = 0;
+
+            data.events.forEach(cloudEv => {
+              if (!cloudEv || !cloudEv.title) return;
+              const key = `${cloudEv.title}_${cloudEv.date}`;
+              const matchByUrl = cloudEv.url && existingUrls.has(cloudEv.url);
+              const matchByKey = existingKeys.has(key);
+
+              if (!matchByUrl && !matchByKey) {
+                this.events.push(cloudEv);
+                if (cloudEv.url) existingUrls.add(cloudEv.url);
+                existingKeys.add(key);
+                addedEventsFromCloud++;
+              }
+            });
+
+            if (addedEventsFromCloud > 0) {
+              localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(this.events));
+              needsRender = true;
+            }
           }
+
           if (needsRender) {
-            console.log('[Cloud Sync] Loaded shared state from GitHub storage');
+            console.log('[Cloud Sync] Smart merge completed successfully');
             this.render();
           }
+
+          // Push merged complete state back to server so cloud stays up-to-date with new local groups
+          this.syncStateWithAntigravity('双方向マージ同期');
         }
       }).catch(() => {});
   }
