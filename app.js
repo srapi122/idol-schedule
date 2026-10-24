@@ -1309,17 +1309,44 @@ https://tiget.net/events/sample-nov15`;
       });
     }
 
-    // Normalize and sort strictly by date (YYYY-MM-DD string comparison)
+    // Helper: Normalize date string
     const normalizeDateStr = (s) => {
       if (!s) return '9999-99-99';
       const m = s.match(/(\d{4})[年\/-](\d{1,2})[月\/-](\d{1,2})/);
       return m ? `${m[1]}-${String(m[2]).padStart(2, '0')}-${String(m[3]).padStart(2, '0')}` : s;
     };
 
+    // Helper: Get earliest performance / start / open time for sorting
+    const getEventSortTime = (ev) => {
+      // 1. Earliest liveStart of registered idol groups
+      const liveStarts = (ev.schedules || [])
+        .map(s => s.liveStart)
+        .filter(t => t && /^\d{1,2}:\d{2}$/.test(t));
+      if (liveStarts.length > 0) {
+        liveStarts.sort();
+        return liveStarts[0].padStart(5, '0');
+      }
+      // 2. Event start time
+      if (ev.startTime && /^\d{1,2}:\d{2}$/.test(ev.startTime)) {
+        return ev.startTime.padStart(5, '0');
+      }
+      // 3. Event open time
+      if (ev.openTime && /^\d{1,2}:\d{2}$/.test(ev.openTime)) {
+        return ev.openTime.padStart(5, '0');
+      }
+      return '99:99';
+    };
+
+    // Sort strictly by Date first, then by Time (昼公演 ➔ 夜公演)
     list.sort((a, b) => {
       const da = normalizeDateStr(a.date);
       const db = normalizeDateStr(b.date);
-      return this.sortOrder === 'asc' ? da.localeCompare(db) : db.localeCompare(da);
+      if (da !== db) {
+        return this.sortOrder === 'asc' ? da.localeCompare(db) : db.localeCompare(da);
+      }
+      const ta = getEventSortTime(a);
+      const tb = getEventSortTime(b);
+      return this.sortOrder === 'asc' ? ta.localeCompare(tb) : tb.localeCompare(ta);
     });
 
     // Update Radar Summary Card
@@ -1459,7 +1486,7 @@ https://tiget.net/events/sample-nov15`;
         <div class="event-card-header">
           <div class="event-date-box">
             <span class="event-date-day" style="${isToday ? 'color: var(--accent-cyan); font-weight:900;' : (isWeekend ? 'color: var(--accent-pink);' : '')}">
-              ${Number(m)}/${Number(d)} (${dayOfWeek})
+              ${Number(m)}/${Number(d)} (${dayOfWeek}) ${event.startTime ? `<span style="font-size:12px; font-weight:700; color:var(--text-muted); margin-left:4px;">${event.startTime}〜</span>` : ''}
             </span>
             <span class="event-venue-text">
               <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
@@ -1600,7 +1627,19 @@ https://tiget.net/events/sample-nov15`;
   }
 
   renderCalendarDayDetail(dateStr) {
-    const dayEvents = this.events.filter(e => e.date === dateStr);
+    // Get earliest time for sorting
+    const getSortTime = (ev) => {
+      const liveStarts = (ev.schedules || []).map(s => s.liveStart).filter(t => t && /^\d{1,2}:\d{2}$/.test(t));
+      if (liveStarts.length > 0) { liveStarts.sort(); return liveStarts[0].padStart(5, '0'); }
+      if (ev.startTime && /^\d{1,2}:\d{2}$/.test(ev.startTime)) return ev.startTime.padStart(5, '0');
+      if (ev.openTime && /^\d{1,2}:\d{2}$/.test(ev.openTime)) return ev.openTime.padStart(5, '0');
+      return '99:99';
+    };
+
+    const dayEvents = this.events
+      .filter(e => e.date === dateStr)
+      .sort((a, b) => getSortTime(a).localeCompare(getSortTime(b)));
+
     const [y, m, d] = dateStr.split('-');
     this.calSelectedDayTitle = document.getElementById('calSelectedDayTitle');
     this.calSelectedDayTitle.textContent = `${Number(m)}月${Number(d)}日の予定`;
@@ -1624,10 +1663,15 @@ https://tiget.net/events/sample-nov15`;
       item.style.cursor = 'pointer';
       item.style.marginBottom = '6px';
 
+      const timeLabel = ev.startTime ? `${ev.startTime}〜` : (ev.openTime ? `${ev.openTime}開場` : '');
+
       item.innerHTML = `
         <div class="group-info-left" style="flex:1; min-width:0; margin-right:8px;">
-          <div style="font-family: var(--font-brand); font-weight:800; font-size:16px; color:${overlap.isHot ? 'var(--accent-pink)' : 'var(--accent-cyan)'}; flex-shrink:0;">
-            ${overlap.count}組
+          <div style="display:flex; flex-direction:column; align-items:center; min-width:44px; flex-shrink:0;">
+            <span style="font-family: var(--font-brand); font-weight:800; font-size:15px; color:${overlap.isHot ? 'var(--accent-pink)' : 'var(--accent-cyan)'}; line-height:1.1;">
+              ${overlap.count}組
+            </span>
+            ${timeLabel ? `<span style="font-size:10px; font-weight:700; color:var(--text-muted); margin-top:2px;">${timeLabel}</span>` : ''}
           </div>
           <div style="overflow:hidden; text-overflow:ellipsis;">
             <div style="font-weight:700; color:#fff; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${ev.title}</div>
@@ -1669,7 +1713,8 @@ https://tiget.net/events/sample-nov15`;
       const opt = document.createElement('option');
       opt.value = ev.id;
       const count = (ev.schedules || []).length;
-      opt.textContent = `${ev.date.slice(5)} 『${ev.title}』 (${count}組出演)`;
+      const timeStr = ev.startTime ? ` ${ev.startTime}〜` : '';
+      opt.textContent = `${ev.date.slice(5)}${timeStr} 『${ev.title}』 (${count}組出演)`;
       this.taiteEventSelect.appendChild(opt);
     });
 
