@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 16:21:46",
-  "lastAction": "推しグループ更新",
+  "syncedAt": "2026/10/24 16:22:02",
+  "lastAction": "自動巡回より実在チケット追加・複数推し統合",
   "totalGroups": 11,
-  "totalEvents": 28,
+  "totalEvents": 31,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -399,6 +399,30 @@
       ]
     },
     {
+      "id": "lp-miru_pack2026",
+      "title": "水月みる生誕パック2026",
+      "date": "2026-10-27",
+      "venue": "のイベントを検索",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/miru_pack2026",
+      "site": "LivePocket",
+      "performers": [
+        "Falench."
+      ],
+      "notes": "LivePocket連携 (Falench.)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
       "id": "td-EfLTSrr5hdlJRaqVzyuh",
       "title": "にっぽん！真骨頂現体制終了ライブ",
       "date": "2026-11-01",
@@ -500,6 +524,30 @@
         },
         {
           "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-kyunpani-RtMT1",
+      "title": "きゅんぱに！単独無銭定期公演 「Road to Maybe Train Ⅰ」",
+      "date": "2026-11-06",
+      "venue": "赤坂BUZZLIVE",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/kyunpani-RtMT1",
+      "site": "TicketDive",
+      "performers": [
+        "きゅんぱに！"
+      ],
+      "notes": "TicketDive連携 (きゅんぱに！)",
+      "schedules": [
+        {
+          "groupId": "grp-1792826505873",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -913,6 +961,30 @@
       "schedules": [
         {
           "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-kyunpani-1stAnniversary",
+      "title": "きゅんぱに！1st Anniversaryワンマンライブ『Maybe Train』",
+      "date": "2027-02-28",
+      "venue": "Studio Freedom",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/kyunpani-1stAnniversary",
+      "site": "TicketDive",
+      "performers": [
+        "きゅんぱに！"
+      ],
+      "notes": "TicketDive連携 (きゅんぱに！)",
+      "schedules": [
+        {
+          "groupId": "grp-1792826505873",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
