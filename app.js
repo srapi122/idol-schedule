@@ -249,7 +249,42 @@ class IdolRadarApp {
 
           // 2. Events direct synchronization with cloud (Server is Single Source of Truth)
           if (Array.isArray(data.events)) {
-            this.events = data.events;
+            // Build lookup of current local events to preserve user's manual modifications (status, notes, schedules)
+            const localEventMap = new Map();
+            this.events.forEach(e => {
+              if (e.id) localEventMap.set(e.id, e);
+              if (e.url) localEventMap.set(e.url, e);
+            });
+
+            // Use cloud events as master list of valid events
+            const mergedEvents = data.events.map(cloudEv => {
+              const localMatch = localEventMap.get(cloudEv.id) || (cloudEv.url ? localEventMap.get(cloudEv.url) : null);
+              if (localMatch) {
+                return {
+                  ...cloudEv,
+                  // Preserve user's manual status change (e.g. going)
+                  status: (localMatch.status && localMatch.status !== 'considering') ? localMatch.status : cloudEv.status,
+                  // Preserve user's manual custom notes (exclude auto-generated tags)
+                  notes: (localMatch.notes && !localMatch.notes.includes('連携')) ? localMatch.notes : cloudEv.notes,
+                  // Preserve user's entered schedules/times
+                  schedules: (Array.isArray(localMatch.schedules) && localMatch.schedules.some(s => s.liveStart || s.tokutenStart))
+                    ? localMatch.schedules
+                    : cloudEv.schedules
+                };
+              }
+              return cloudEv;
+            });
+
+            // Also preserve purely user-created custom events (not external ticket scans)
+            this.events.forEach(localEv => {
+              if (localEv.isCustom || (!localEv.url && !localEv.site)) {
+                if (!mergedEvents.some(e => e.id === localEv.id)) {
+                  mergedEvents.push(localEv);
+                }
+              }
+            });
+
+            this.events = mergedEvents;
             localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(this.events));
             needsRender = true;
           }
