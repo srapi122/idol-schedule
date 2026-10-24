@@ -120,10 +120,31 @@ function getGroupKeywords(groupName) {
   return [new RegExp(escaped, 'i')];
 }
 
+// Helper: Strip other/recommended events (e.g. LivePocket "同じ販売元のイベント", recommendations, footer)
+function cleanMainHtml(html) {
+  if (!html) return '';
+  let clean = html;
+  const cutMarkers = [
+    /<section[^>]*class=["'][^"']*event-detail-other[^"']*["']/i,
+    /class=["'][^"']*event-detail-other[^"']*["']/i,
+    /<ul[^>]*class=["'][^"']*event-card-list--other[^"']*["']/i,
+    /<h\d[^>]*>[^<]*同じ販売元のイベント/i,
+    /<footer[\s\S]*$/i
+  ];
+  for (const marker of cutMarkers) {
+    const m = clean.match(marker);
+    if (m && m.index !== undefined) {
+      clean = clean.substring(0, m.index);
+    }
+  }
+  return clean;
+}
+
 function isIdolActuallyPerforming(htmlOrText, groupName) {
   if (!htmlOrText || !groupName) return false;
+  const mainOnly = cleanMainHtml(htmlOrText);
   const regexes = getGroupKeywords(groupName);
-  return regexes.some(r => r.test(htmlOrText));
+  return regexes.some(r => r.test(mainOnly));
 }
 
 // Helper: Extract performers completely (handles schema.org JSON-LD, meta keywords, and tags)
@@ -501,21 +522,30 @@ async function searchLivePocket(keyword) {
   const seenUrls = new Set();
 
   // 1. Official LivePocket Keyword Search
-  const targetUrl = `https://livepocket.jp/event/search?word=${encodeURIComponent(cleanKeyword)}`;
-  try {
-    const fetchRes = await fetchUrl(targetUrl);
-    const html = fetchRes.body || '';
-    const items = html.split('<li class="event-card-list__item">');
+  const searchKeywords = [cleanKeyword];
+  if (cleanKeyword.toLowerCase().includes('jyapon') || cleanKeyword.includes('ジャポン')) {
+    searchKeywords.push('SUPER☆JYAPON');
+    searchKeywords.push('スーパージャポン');
+  }
 
+  try {
     const candidateUrls = [];
-    for (let i = 1; i < items.length; i++) {
-      const item = items[i].split('</li>')[0];
-      const linkMatch = item.match(/href="(\/e\/[^"]+)"/);
-      if (!linkMatch) continue;
-      const eventUrl = `https://livepocket.jp${linkMatch[1]}`;
-      if (seenUrls.has(eventUrl)) continue;
-      seenUrls.add(eventUrl);
-      candidateUrls.push(eventUrl);
+    for (const kw of searchKeywords) {
+      const targetUrl = `https://livepocket.jp/event/search?word=${encodeURIComponent(kw)}`;
+      const fetchRes = await fetchUrl(targetUrl).catch(() => ({ body: '' }));
+      const html = fetchRes.body || '';
+      const items = html.split('<li class="event-card-list__item">');
+
+      for (let i = 1; i < items.length; i++) {
+        const item = items[i].split('</li>')[0];
+        const linkMatch = item.match(/href="(\/e\/[^"]+)"/);
+        if (!linkMatch) continue;
+        const eventUrl = `https://livepocket.jp${linkMatch[1]}`;
+        if (seenUrls.has(eventUrl)) continue;
+        seenUrls.add(eventUrl);
+        candidateUrls.push(eventUrl);
+        if (candidateUrls.length >= 10) break;
+      }
       if (candidateUrls.length >= 10) break;
     }
 
