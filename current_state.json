@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 16:59:40",
-  "lastAction": "アプリ初期起動・状態同期",
+  "syncedAt": "2026/10/24 17:00:19",
+  "lastAction": "イベント更新",
   "totalGroups": 11,
-  "totalEvents": 77,
+  "totalEvents": 78,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -546,7 +546,7 @@
         "出演予定グループの変更",
         "ならびに出演者様の出演見合わせ及び出演者の欠席などによる払い戻しはございません。●誤ってチケットの種類を間違えて購入された時は",
         "すぐにお問い合わせまで連絡ください。チケットはそのままで振り替え対応させて頂きますが",
-        "キャンセルはできませんのでご了承ください。●お客様都合によるキャンセル及び払い戻しは致しかねます。お間違えのないようにご注意ください。●ジャンプ",
+        "キャンセルはできませんのでご了承ください。●お客様都合によ��キャンセル及び払い戻しは致しかねます。お間違えのないようにご注意ください。●ジャンプ",
         "モッシュ",
         "ダイブ",
         "リフト",
@@ -865,14 +865,10 @@
         "000円",
         "女性 3",
         "000円②後方A 3",
-        "000円",
         "女性 1",
         "500円※各別途1D 600円(各部予約)③前方S 3",
-        "000円",
         "女性 2",
         "000円④後方A 2",
-        "000円",
-        "女性 1",
         "000円※各別途1D 600円(各部当日)⑤当日各券種＋1000円 ※各別途1D 600円◆入場順通し予約①前方S⇒②通し後方A⇒③各部前方S⇒④後方A⇒⑤当日◆予約2026.10.15(木) 22:00〜2026.10.24(土) 23:00 締切【予約に関してのご注意】〇当日は現金払いのみとなります。〇本イベントの予約受付締め切りは",
         "10",
         "24(土) PM23:00にて締め切りとさせて頂きます。〇人数制限があります為",
@@ -897,23 +893,8 @@
         "ご予約分全てのご入場料金を頂くなどの処置を取らさせて頂く場合が御座いますのでご注意ください。〇当日券は開演後",
         "会場の収容人数に余裕があれば随時販売致しますが",
         "会場の状況次第となります為お待ち頂いても当日券を販売しない場合が御座います。◆1部※50音順オトメルキュール",
-        "きゅんぱに！",
-        "戦闘力",
-        "たったの3。",
-        "透明な栞",
-        "みるせんっ!",
-        "MEMORI",
-        "melty amour",
-        "Mellow",
-        "らぶららら",
         "LitMelt  ◆2部※50音順下り坂レボリューション",
-        "シブヤDOMINION",
-        "STRAWBERRY FEATHER STAR",
-        "花ノぷりんせす",
-        "patria parade",
-        "fairy☆dolls",
         "FADEIN+",
-        "HEAVENLY",
         "病みエンジェル【特記事項】•撮影(撮影可のグループ様除く)録音.録画類•飲食物の持ち込み•モッシュ.リフトなど廻りのお客様に迷惑が掛かる危険•迷惑行為禁止•会場内の器物類に触れたり物を置くなど禁止【LIVE中のご注意】○当公演につきまして",
         "撮影類は基本禁止にしております。○三脚",
         "脚立などを使っての撮影は危険ですので禁止とさせていただきます。ただし",
@@ -2517,7 +2498,6 @@
         "5(土)19:00〜開催日前日23:59◉料金　各日程：VIP前方エリアチケット ¥7",
         "500",
         "一般エリアチケット ¥3",
-        "500",
         "当日チケット 各券種 +¥1",
         "000※入場時別途ドリンク代必要※小学生以上有料",
         "小学生未満は保護者1名につき1名無料です。◉入場順①前方エリアチケット(整理番号順)→ ②一般エリアチケット(整理番号順)→ ③当日券（整列順）◉出演者〇第3弾発表 ama9選抜キャスト",
@@ -3319,6 +3299,28 @@
       ]
     },
     {
+      "id": "lp-sfjt2026-n",
+      "title": "SUPER FANTASY JAPAN TOUR 2026- UNCHARTED -&lt;名古屋公演&gt;",
+      "date": "2026-12-05",
+      "venue": "レジェンドホール（愛知県）",
+      "openTime": "12:00",
+      "startTime": "17:00",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/sfjt2026-n",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
       "id": "lp-d_b_i_album_release_tour_day1",
       "title": "Dead By Inches new album  &quot;never smile again (笑えない)&quot; release tour 2026-2027 Day 1",
       "date": "2026-12-12",
@@ -3333,6 +3335,28 @@
       "schedules": [
         {
           "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-sfjt2026-y",
+      "title": "SUPER FANTASY JAPAN TOUR 2026- UNCHARTED -&lt;横浜公演&gt;",
+      "date": "2026-12-12",
+      "venue": "LANDMARK HALL（神奈川県）",
+      "openTime": "12:00",
+      "startTime": "16:30",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/sfjt2026-y",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289674377",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -3379,28 +3403,6 @@
       "schedules": [
         {
           "groupId": "grp-1792289697131",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-q-jnp",
-      "title": "下北沢ERA &amp; 近道 pre.「BACK TO THE MIND」",
-      "date": "2026-12-29",
-      "venue": "下北沢ERA / 下北沢近道 / Rinky Dink Studio 下北沢1st 3F 5st（東京都）",
-      "openTime": "12:00",
-      "startTime": "13:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/q-jnp",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (KATACOTO*BANK)",
-      "schedules": [
-        {
-          "groupId": "grp-1792288011098",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
