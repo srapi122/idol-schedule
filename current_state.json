@@ -1,7 +1,7 @@
 {
-  "syncedAt": "2026/10/24 16:28:50",
-  "lastAction": "イベント更新",
-  "totalGroups": 10,
+  "syncedAt": "2026/10/24 16:28:58",
+  "lastAction": "推しグループ更新",
+  "totalGroups": 11,
   "totalEvents": 0,
   "groups": [
     {
@@ -82,6 +82,14 @@
       "twitter": "ponkotsu_OFC",
       "rank": "A",
       "color": "#ff2a85",
+      "memo": ""
+    },
+    {
+      "id": "grp-1792826937667",
+      "name": "きゅんぱに！",
+      "twitter": "kyunpani",
+      "rank": "B",
+      "color": "#10b981",
       "memo": ""
     }
   ],
