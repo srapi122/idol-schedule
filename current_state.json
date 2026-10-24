@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 17:00:19",
+  "syncedAt": "2026/10/24 17:00:33",
   "lastAction": "イベント更新",
   "totalGroups": 11,
-  "totalEvents": 78,
+  "totalEvents": 77,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -539,14 +539,14 @@
       "url": "https://tiget.net/events/527795",
       "site": "TIGET",
       "performers": [
-        "SAKURADOLL アルテミスの翼 スーパーベイビーズ ReverseTokyo Re:INCARNATION リボンクロック HEAVENLY 放課後プリンセス LOVE9LOVE 泡沫Lyrics エラバレシ アイドルキャリア キプリスモルホォ May Love Rouge LUMI×NOIR ソラネルカンパニー ♮リアスクライブ Fancy Film ばたんキュン RUN WiTH YOU Bety ラストレイ 瞬きのネビュラ jamstep 天使突抜ニ読ミ LUMINOUS PARADE 再生のルクトゥミー LOVE IZ DOLL 空想と妄想とキミの恋した世界 LunaMoon めろでぃーぷれいす RIFFBABYZ SEKAMONO OS1(オーエスワン） DriE 煌きメリー☆ボップ KATA☆CHU KATACOTO＊BANK SHINKA↑ 会場:Lumine 0 【日程】\t2026年10月25日(日)  開場",
+        "SAKURADOLL アルテミスの翼 スーパーベイビーズ ReverseTokyo Re:INCARNATION リボンクロック HEAVENLY 放課後プリンセス LOVE9LOVE 泡沫Lyrics エラバレシ アイドルキャリア キプリスモルホォ May Love Rouge LUMI×NOIR ソラネルカンパニー ♮リアスクライブ Fancy Film ばたんキュン RUN WiTH YOU Bety ラストレイ 瞬きのネビュラ jamstep 天使突抜ニ読ミ LUMINOUS PARADE 再生の���クトゥミー LOVE IZ DOLL 空想と妄想とキミの恋した世界 LunaMoon めろでぃーぷれいす RIFFBABYZ SEKAMONO OS1(オーエスワン） DriE 煌きメリー☆ボップ KATA☆CHU KATACOTO＊BANK SHINKA↑ 会場:Lumine 0 【日程】\t2026年10月25日(日)  開場",
         "9:30 開演",
         "9:50【料金】（各別途1D 700円）前方エリア : 前売4500円 当日5000円一般 : 前売2500円 当日3000円女性 : 前売2000円 当日2500円※再入場1D席ありスタンディング可🉐※早割1000円キャッシュバック(9時50分まで入場適用)入場順(チケット番号順)S席→A席→当日券● 購入されたチケットにおきましてはイベントが中止及び延期",
         "入場規制対象者となり入場しない時のみキャンセル及び返金対応させて頂きます。● 開演時間や出演時間の変更",
         "出演予定グループの変更",
         "ならびに出演者様の出演見合わせ及び出演者の欠席などによる払い戻しはございません。●誤ってチケットの種類を間違えて購入された時は",
         "すぐにお問い合わせまで連絡ください。チケットはそのままで振り替え対応させて頂きますが",
-        "キャンセルはできませんのでご了承ください。●お客様都合によ��キャンセル及び払い戻しは致しかねます。お間違えのないようにご注意ください。●ジャンプ",
+        "キャンセルはできませんのでご了承ください。●お客様都合によるキャンセル及び払い戻しは致しかねます。お間違えのないようにご注意ください。●ジャンプ",
         "モッシュ",
         "ダイブ",
         "リフト",
@@ -885,7 +885,7 @@
         "必ずキャンセルの手続きをお願い致します。〇記入の際は必ず",
         "ご予約様のお名前(お一人様必須)",
         "電話番号",
-        "お目当てのグループ名などの明記を必ず記載お願い致します。尚",
+        "お目当てのグループ名などの明記を必��記載お願い致します。尚",
         "1項目でも抜けてある場合は",
         "当日扱い対象となりますのでご注意ください。〇公演当日お一人様に複数のご予約がある場合はご予約分全てのご入場料金を頂くなどの処置を取らさせて頂きます。〇万が一",
         "チケットを誤ってご予約した際は",
@@ -3357,28 +3357,6 @@
       "schedules": [
         {
           "groupId": "grp-1792289674377",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-jjvok",
-      "title": "JAPAN CUMBIA FESTIVAL 2026",
-      "date": "2026-12-13",
-      "venue": "新宿MARZ（東京都）",
-      "openTime": "12:00",
-      "startTime": "13:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/jjvok",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (KATACOTO*BANK)",
-      "schedules": [
-        {
-          "groupId": "grp-1792288011098",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
