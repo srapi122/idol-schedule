@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/18 13:38:25",
-  "lastAction": "サーバー最新タイテと推しグループ統合",
+  "syncedAt": "2026/10/24 15:30:22",
+  "lastAction": "誤検出イベント完全除外・精度向上クリーンアップ",
   "totalGroups": 10,
-  "totalEvents": 41,
+  "totalEvents": 28,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -385,28 +385,6 @@
       ]
     },
     {
-      "id": "lp-nseyj",
-      "title": "10/24(土) コンカフェ スターネクスト",
-      "date": "2026-10-24",
-      "venue": "LEFKADA新宿（東京都）",
-      "openTime": "12:00",
-      "startTime": "13:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/nseyj",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (ネクスタリア)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289727807",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
       "id": "lp-ring-1025",
       "title": "Falench.単独公演『ハロウィン編』",
       "date": "2026-10-25",
@@ -415,28 +393,6 @@
       "startTime": "12:30",
       "status": "considering",
       "url": "https://livepocket.jp/e/ring-1025",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-j44m6",
-      "title": "Fade Stellar pre. &quot;We Are All Orphans&quot;",
-      "date": "2026-10-25",
-      "venue": "新宿ANTIKNOCK（東京都）",
-      "openTime": "12:00",
-      "startTime": "18:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/j44m6",
       "site": "LivePocket",
       "performers": [],
       "notes": "LivePocket連携 (Falench.)",
@@ -541,52 +497,6 @@
       ]
     },
     {
-      "id": "lp-amhall1029",
-      "title": "ワッツ◎さーくる 木曜定期公演vol.285〜Halloween LIVE〜",
-      "date": "2026-10-29",
-      "venue": "梅田amHALL",
-      "openTime": "18:00",
-      "startTime": "18:20",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/amhall1029",
-      "site": "LivePocket",
-      "performers": [
-        "ワッツ◎さーくる"
-      ],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-20261030_spv",
-      "title": "すーぱーぷーばぁー!! presents 定期公演 Road to Castle vol.5",
-      "date": "2026-10-30",
-      "venue": "心斎橋SUNHALL（大阪府）",
-      "openTime": "12:00",
-      "startTime": "19:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/20261030_spv",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (にっぽん！真骨頂)",
-      "schedules": [
-        {
-          "groupId": "grp-1792292767100",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
       "id": "td-EfLTSrr5hdlJRaqVzyuh",
       "title": "にっぽん！真骨頂現体制終了ライブ",
       "date": "2026-11-01",
@@ -603,28 +513,6 @@
       "schedules": [
         {
           "groupId": "grp-1792292767100",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-pnv8g",
-      "title": "FTL SHINKI ONE MAN LIVE FTL Friends Fes",
-      "date": "2026-11-02",
-      "venue": "代官山ORD.（東京都）",
-      "openTime": "12:00",
-      "startTime": "18:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/pnv8g",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (KATACOTO*BANK)",
-      "schedules": [
-        {
-          "groupId": "grp-1792288011098",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -666,11 +554,25 @@
       "status": "considering",
       "url": "https://livepocket.jp/e/00onm",
       "site": "LivePocket",
-      "performers": [],
+      "performers": [
+        "奏音コレクト",
+        "アイテムはてるてるのみ",
+        "アップアップガールズ(仮)",
+        "GANGDEMIC",
+        "桃色革命",
+        "SUPER JYAPON"
+      ],
       "notes": "LivePocket連携 (アイテムはてるてるのみ)",
       "schedules": [
         {
           "groupId": "grp-1792289628663",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289674377",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -693,94 +595,6 @@
       "schedules": [
         {
           "groupId": "grp-1792288011098",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-9qv-2",
-      "title": "SAMURAI METAL 酒戦祭 ～レコ発第二弾 × 結成10周年第三弾～ 3マン合戦",
-      "date": "2026-11-08",
-      "venue": "SHIBUYA CYCLONE（東京都）",
-      "openTime": "12:00",
-      "startTime": "18:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/9qv-2",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-unblancheballetacademy",
-      "title": "UNBLANCHÉ BALLET ACADEMY year-end show",
-      "date": "2026-11-12",
-      "venue": "銀座ブロッサム　中央会館（東京都）",
-      "openTime": "12:00",
-      "startTime": "17:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/unblancheballetacademy",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-oitaazul",
-      "title": "AZUL 8th Anniversary Party",
-      "date": "2026-11-13",
-      "venue": "AZUL（大分県）",
-      "openTime": "12:00",
-      "startTime": "22:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/oitaazul",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (KATACOTO*BANK)",
-      "schedules": [
-        {
-          "groupId": "grp-1792288011098",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-sfjt2026-s",
-      "title": "SUPER FANTASY JAPAN TOUR 2026- UNCHARTED -&lt;仙台公演&gt;",
-      "date": "2026-11-14",
-      "venue": "誰も知らない劇場（宮城県）",
-      "openTime": "12:00",
-      "startTime": "17:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/sfjt2026-s",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (SUPER JYAPON)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289674377",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -813,50 +627,6 @@
       ]
     },
     {
-      "id": "lp-72ihz",
-      "title": "JAM !  100% FALMENCO 広島公演",
-      "date": "2026-11-15",
-      "venue": "SIX-ONE（広島県）",
-      "openTime": "12:00",
-      "startTime": "18:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/72ihz",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-m6xd4",
-      "title": "HIRAETH pre &quot;UNITY PARK 2026&quot;",
-      "date": "2026-11-15",
-      "venue": "下北沢11会場（東京都）",
-      "openTime": "12:00",
-      "startTime": "11:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/m6xd4",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (SUPER JYAPON)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289674377",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
       "id": "lp-20261115big",
       "title": "ラジオ大阪presents「GIRLS CIRCUIT  LIVE &amp;RADIOびっくえんじぇるとまんぷくSP」",
       "date": "2026-11-15",
@@ -871,50 +641,6 @@
       "schedules": [
         {
           "groupId": "grp-1792289806064",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-wr9my",
-      "title": "JAM !  100% FALMENCO 東京公演",
-      "date": "2026-11-18",
-      "venue": "南青山MANDALA（東京都）",
-      "openTime": "12:00",
-      "startTime": "12:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/wr9my",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-m064-",
-      "title": "JAM !  100% FALMENCO 名古屋公演",
-      "date": "2026-11-20",
-      "venue": "NAGOYA JAMMIN&#39;（愛知県）",
-      "openTime": "12:00",
-      "startTime": "19:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/m064-",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
