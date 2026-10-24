@@ -130,7 +130,21 @@ function isIdolActuallyPerforming(htmlOrText, groupName) {
 function extractAllPerformers(html) {
   const list = new Set();
 
-  // 1. Check schema.org JSON-LD (LivePocket standard)
+  // 1. Check meta og:description (TicketDive & others frequently list performers here)
+  const ogDescMatch = html.match(/<meta\s+(?:property=["']og:description["']|name=["']description["'])\s+content=["']([^"']+)["']/i);
+  if (ogDescMatch) {
+    const descContent = ogDescMatch[1].replace(/&amp;/g, '&').replace(/&#x27;/g, "'").replace(/&quot;/g, '"');
+    const pMatch = descContent.match(/(?:出演(?:者)?|ARTIST[S]?|CAST)[\s:：】]*([^"'\n]+)/i);
+    if (pMatch) {
+      let cleanText = pMatch[1].replace(/【.*?】/g, ' ').replace(/\[.*?\]/g, ' ');
+      cleanText.split(/[\/／,、・\t]/).forEach(s => {
+        const c = s.replace(/["'<>]/g, '').trim();
+        if (c.length >= 2 && c.length < 35 && !c.includes('チケット') && !c.includes('入場')) list.add(c);
+      });
+    }
+  }
+
+  // 2. Check schema.org JSON-LD (LivePocket standard)
   const jsonLdMatches = html.matchAll(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi);
   for (const m of jsonLdMatches) {
     try {
@@ -138,7 +152,7 @@ function extractAllPerformers(html) {
       const perf = data.performer?.name || data.performer || '';
       if (typeof perf === 'string' && perf) {
         perf.split(/[\/／,、]/).forEach(s => {
-          const c = s.trim();
+          const c = s.replace(/["'<>]/g, '').trim();
           if (c.length >= 2) list.add(c);
         });
       }
@@ -146,29 +160,29 @@ function extractAllPerformers(html) {
       const colonIdx = desc.lastIndexOf('：');
       if (colonIdx !== -1) {
         desc.slice(colonIdx + 1).split(/[\/／,、]/).forEach(s => {
-          const c = s.trim();
+          const c = s.replace(/["'<>]/g, '').trim();
           if (c.length >= 2) list.add(c);
         });
       }
     } catch (e) {}
   }
 
-  // 2. Check meta keywords
+  // 3. Check meta keywords
   const metaKw = html.match(/<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']/i);
   if (metaKw) {
     metaKw[1].split(/[,、]/).forEach(s => {
-      const c = s.trim();
+      const c = s.replace(/["'<>]/g, '').trim();
       if (c.length >= 2 && !c.includes('チケット') && !c.includes('ライブポケット')) list.add(c);
     });
   }
 
-  // 3. Check出演 section
+  // 4. Check 出演 section in body
   const cleanBody = html.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '');
-  const pMatch = cleanBody.match(/(?:出演(?:者)?|ARTIST[S]?|CAST)[\s:：]*([^\n]{3,400})/i);
+  const pMatch = cleanBody.match(/(?:出演(?:者)?|ARTIST[S]?|CAST)[\s:：】]*([^\n]{3,400})/i);
   if (pMatch) {
-    const rawSection = pMatch[1].replace(/<[^>]+>/g, ' ');
+    const rawSection = pMatch[1].replace(/<[^>]+>/g, ' ').replace(/["'].*$/, '');
     rawSection.split(/[\/／,、・\t]/).forEach(s => {
-      const c = s.trim();
+      const c = s.replace(/["'<>【】\[\]]/g, '').trim();
       if (c.length >= 2 && c.length < 35 && !c.includes('チケット') && !c.includes('入場')) list.add(c);
     });
   }
@@ -184,33 +198,59 @@ function parseTicketHtml(html, ticketUrl) {
   let openTime = '';
   let startTime = '';
 
-  // Title extraction: prioritize <h1>, then meta og:title
+  // Title extraction: avoid generic titles like "販売情報" or "チケット情報"
   const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
   if (h1Match) {
-    title = h1Match[1].replace(/<[^>]+>/g, '').trim();
+    const candidate = h1Match[1].replace(/<[^>]+>/g, '').trim();
+    if (!candidate.includes('販売情報') && !candidate.includes('チケット情報') && candidate.length > 2) {
+      title = candidate;
+    }
   }
   if (!title) {
     const ogTitleMatch = html.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i) ||
                          html.match(/<title>([^<]+)<\/title>/i);
     if (ogTitleMatch) {
-      title = ogTitleMatch[1].replace(/[-|｜].*$/, '').replace(/のチケット情報.*$/, '').trim();
+      title = ogTitleMatch[1]
+        .replace(/\s*[|｜]\s*(TicketDive|TIGET|LivePocket|PayLove|チケット).*$/i, '')
+        .replace(/\s*[|｜].*$/, '')
+        .replace(/のチケット情報.*$/, '')
+        .trim();
     }
   }
 
-  // Date extraction: YYYY-MM-DD or YYYY年MM月DD日
-  const dateMatch = html.match(/(202[4-9])[年/.-](\d{1,2})[月/.-](\d{1,2})/);
-  if (dateMatch) {
-    date = `${dateMatch[1]}-${String(dateMatch[2]).padStart(2, '0')}-${String(dateMatch[3]).padStart(2, '0')}`;
+  // Check og:description first for structured TicketDive info (【場所】... 【日付】...)
+  const ogDescMatch = html.match(/<meta\s+(?:property=["']og:description["']|name=["']description["'])\s+content=["']([^"']+)["']/i);
+  if (ogDescMatch) {
+    const desc = ogDescMatch[1].replace(/&amp;/g, '&').replace(/&#x27;/g, "'");
+    const dMatch = desc.match(/(202[4-9])[年/.-](\d{1,2})[月/.-](\d{1,2})/);
+    if (dMatch) {
+      date = `${dMatch[1]}-${String(dMatch[2]).padStart(2, '0')}-${String(dMatch[3]).padStart(2, '0')}`;
+    }
+    const vMatch = desc.match(/(?:【場所】|【会場】|場所[：:]|会場[：:])\s*([^【\n\r<]{2,50})/);
+    if (vMatch) {
+      venue = vMatch[1].replace(/（.*$/, '').replace(/\(.*$/, '').trim();
+    }
   }
 
-  // Venue extraction (safe from <script>)
-  const cleanHtml = html.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '');
-  const venueMatch = cleanHtml.match(/(?:会場|場所|VENUE)[\s:：]*([^\n\r<]{2,40})/i);
-  if (venueMatch) {
-    venue = venueMatch[1].replace(/（.*$/, '').replace(/\(.*$/, '').trim();
+  // Date extraction fallback: YYYY-MM-DD or YYYY年MM月DD日
+  if (!date) {
+    const dateMatch = html.match(/(202[4-9])[年/.-](\d{1,2})[月/.-](\d{1,2})/);
+    if (dateMatch) {
+      date = `${dateMatch[1]}-${String(dateMatch[2]).padStart(2, '0')}-${String(dateMatch[3]).padStart(2, '0')}`;
+    }
+  }
+
+  // Venue extraction fallback (safe from <script>)
+  if (!venue) {
+    const cleanHtml = html.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '');
+    const venueMatch = cleanHtml.match(/(?:会場|場所|VENUE)[\s:：】]*([^\n\r<]{2,40})/i);
+    if (venueMatch) {
+      venue = venueMatch[1].replace(/（.*$/, '').replace(/\(.*$/, '').replace(/【.*$/, '').replace(/\[.*$/, '').trim();
+    }
   }
 
   // Open / Start times: OPEN19:15 / START19:30 or OPEN 19:15 / START 19:30
+  const cleanHtml = html.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '');
   const openMatch = cleanHtml.match(/(?:OPEN|開場)[\s:：]*(\d{1,2}:\d{2})/i);
   const startMatch = cleanHtml.match(/(?:START|開演)[\s:：]*(\d{1,2}:\d{2})/i);
   if (openMatch) openTime = openMatch[1];
@@ -280,6 +320,7 @@ async function searchTiget(keyword) {
     // Verify each event against keyword to eliminate false positives (e.g. bingo "アイテム")
     const cleanStr = (s) => (s || '').toLowerCase().replace(/[\s\.\*＊!！]/g, '');
     const cleanKeyword = cleanStr(keyword);
+    const events = [];
 
     const pagePromises = candidates.map(c =>
       fetchUrl(`https://tiget.net/events/${c.eventId}`)
@@ -345,48 +386,50 @@ async function searchTicketDive(keyword) {
   try {
     const fetchRes = await fetchUrl(targetUrl);
     const html = fetchRes.body || '';
-    const cards = [...html.matchAll(/<a[^>]*href="(\/event\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
-    const events = [];
+    const cards = [...html.matchAll(/<a[^>]*href="(\/event\/[^"]+)"[^>]*>/g)];
     const seenUrls = new Set();
+    const candidates = [];
 
     for (const card of cards) {
       const eventHref = card[1];
       const eventUrl = `https://ticketdive.com${eventHref}`;
       if (seenUrls.has(eventUrl)) continue;
       seenUrls.add(eventUrl);
-
-      const cardHtml = card[2];
-      const titleMatch = cardHtml.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i);
-      const dateMatch = cardHtml.match(/(\d{4}\/\d{1,2}\/\d{1,2})/);
-      const venueMatch = cardHtml.match(/class="[^"]*Typography_ellipsis__[^"]*"[^>]*>([^<]+)<\/span>/i);
-
-      let rawTitle = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : 'イベント';
-      let rawDate = dateMatch ? dateMatch[1] : '';
-      let rawVenue = venueMatch ? venueMatch[1].trim() : 'ライブ会場';
-
-      let isoDate = '';
-      if (rawDate) {
-        const parts = rawDate.split('/');
-        isoDate = `${parts[0]}-${parts[1].padStart(2, '0')}-${parts[2].padStart(2, '0')}`;
-      }
-
-      const cardText = `${rawTitle} ${rawVenue} ${cardHtml}`;
-      if (!isIdolActuallyPerforming(cardText, keyword)) continue;
-
-      events.push({
-        id: `td-${eventHref.replace('/event/', '')}`,
-        site: 'TicketDive',
-        title: rawTitle,
-        date: isoDate || rawDate,
-        venue: rawVenue,
-        url: eventUrl,
-        matchedGroup: keyword.trim(),
-        performers: [keyword.trim()],
-        openTime: '12:00',
-        startTime: '12:30'
-      });
-      if (events.length >= 8) break;
+      candidates.push({ eventHref, eventUrl });
+      if (candidates.length >= 8) break;
     }
+
+    // Fetch individual event pages in parallel to verify performers & get exact details
+    const pages = await Promise.all(
+      candidates.map(c =>
+        fetchUrl(c.eventUrl)
+          .then(res => ({ ...c, html: res.body || '' }))
+          .catch(() => ({ ...c, html: '' }))
+      )
+    );
+
+    const events = [];
+    for (const p of pages) {
+      if (!p.html) continue;
+
+      // Strict validation: Verify idol group is actually performing
+      if (!isIdolActuallyPerforming(p.html, keyword)) continue;
+
+      const parsed = parseTicketHtml(p.html, p.eventUrl);
+      events.push({
+        id: `td-${p.eventHref.replace('/event/', '')}`,
+        site: 'TicketDive',
+        title: parsed.title,
+        date: parsed.date,
+        venue: parsed.venue,
+        url: p.eventUrl,
+        matchedGroup: keyword.trim(),
+        performers: parsed.performers.length > 0 ? parsed.performers : [keyword.trim()],
+        openTime: parsed.openTime,
+        startTime: parsed.startTime
+      });
+    }
+
     return events;
   } catch (err) {
     console.error(`TicketDive search error for ${keyword}:`, err.message);
