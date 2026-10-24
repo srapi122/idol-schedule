@@ -663,7 +663,7 @@ https://tiget.net/events/sample-nov15`;
             <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
             <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
           </svg>
-          推しの公式Xとチケットサイトを巡回中...
+          4大チケットサイトを横断巡回中...
         `;
 
         try {
@@ -1109,7 +1109,10 @@ https://tiget.net/events/sample-nov15`;
         return g ? g.name : '';
       }).filter(Boolean);
 
-      existing.notes = `${existing.site || ev.site || 'チケットサイト'}連携 (${groupNames.join(', ')})`;
+      // Preserve user custom notes if present (do not overwrite with auto-generated tag)
+      if (!existing.notes || existing.notes.includes('連携')) {
+        existing.notes = `${existing.site || ev.site || 'チケットサイト'}連携 (${groupNames.join(', ')})`;
+      }
     } else {
       // NEW EVENT: add all matched groups without fake times
       const schedules = matchedGroups.map(grp => ({
