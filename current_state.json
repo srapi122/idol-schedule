@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 16:08:11",
-  "lastAction": "自動巡回より実在チケット追加・複数推し統合",
+  "syncedAt": "2026/10/24 16:15:56",
+  "lastAction": "イベント更新",
   "totalGroups": 10,
-  "totalEvents": 28,
+  "totalEvents": 27,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -103,32 +103,6 @@
       "schedules": [
         {
           "groupId": "grp-1792289628663",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-7mzz2",
-      "title": "木ノ下凛花 卒業カンパ",
-      "date": "2026-10-24",
-      "venue": "東京（東京都）",
-      "openTime": "12:00",
-      "startTime": "23:59",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/7mzz2",
-      "site": "LivePocket",
-      "performers": [
-        "木ノ下凛花",
-        "SUPER JYAPON",
-        "\">出演者"
-      ],
-      "notes": "LivePocket連携 (SUPER JYAPON)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289674377",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
