@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 17:00:33",
+  "syncedAt": "2026/10/24 17:00:43",
   "lastAction": "イベント更新",
   "totalGroups": 11,
-  "totalEvents": 77,
+  "totalEvents": 76,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -185,7 +185,7 @@
       "performers": [
         "木ノ下凛花",
         "SUPER JYAPON",
-        "\">出演者"
+        "\">出��者"
       ],
       "notes": "LivePocket連携 (SUPER JYAPON)",
       "schedules": [
@@ -539,7 +539,7 @@
       "url": "https://tiget.net/events/527795",
       "site": "TIGET",
       "performers": [
-        "SAKURADOLL アルテミスの翼 スーパーベイビーズ ReverseTokyo Re:INCARNATION リボンクロック HEAVENLY 放課後プリンセス LOVE9LOVE 泡沫Lyrics エラバレシ アイドルキャリア キプリスモルホォ May Love Rouge LUMI×NOIR ソラネルカンパニー ♮リアスクライブ Fancy Film ばたんキュン RUN WiTH YOU Bety ラストレイ 瞬きのネビュラ jamstep 天使突抜ニ読ミ LUMINOUS PARADE 再生の���クトゥミー LOVE IZ DOLL 空想と妄想とキミの恋した世界 LunaMoon めろでぃーぷれいす RIFFBABYZ SEKAMONO OS1(オーエスワン） DriE 煌きメリー☆ボップ KATA☆CHU KATACOTO＊BANK SHINKA↑ 会場:Lumine 0 【日程】\t2026年10月25日(日)  開場",
+        "SAKURADOLL アルテミスの翼 スーパーベイビーズ ReverseTokyo Re:INCARNATION リボンクロック HEAVENLY 放課後プリンセス LOVE9LOVE 泡沫Lyrics エラバレシ アイドルキャリア キプリスモルホォ May Love Rouge LUMI×NOIR ソラネルカンパニー ♮リアスクライブ Fancy Film ばたんキュン RUN WiTH YOU Bety ラストレイ 瞬きのネビュラ jamstep 天使突抜ニ読ミ LUMINOUS PARADE 再生のルクトゥミー LOVE IZ DOLL 空想と妄想とキミの恋した世界 LunaMoon めろでぃーぷれいす RIFFBABYZ SEKAMONO OS1(オーエスワン） DriE 煌きメリー☆ボップ KATA☆CHU KATACOTO＊BANK SHINKA↑ 会場:Lumine 0 【日程】\t2026年10月25日(日)  開場",
         "9:30 開演",
         "9:50【料金】（各別途1D 700円）前方エリア : 前売4500円 当日5000円一般 : 前売2500円 当日3000円女性 : 前売2000円 当日2500円※再入場1D席ありスタンディング可🉐※早割1000円キャッシュバック(9時50分まで入場適用)入場順(チケット番号順)S席→A席→当日券● 購入されたチケットにおきましてはイベントが中止及び延期",
         "入場規制対象者となり入場しない時のみキャンセル及び返金対応させて頂きます。● 開演時間や出演時間の変更",
@@ -885,7 +885,7 @@
         "必ずキャンセルの手続きをお願い致します。〇記入の際は必ず",
         "ご予約様のお名前(お一人様必須)",
         "電話番号",
-        "お目当てのグループ名などの明記を必��記載お願い致します。尚",
+        "お目当てのグループ名などの明記を必���記載お願い致します。尚",
         "1項目でも抜けてある場合は",
         "当日扱い対象となりますのでご注意ください。〇公演当日お一人様に複数のご予約がある場合はご予約分全てのご入場料金を頂くなどの処置を取らさせて頂きます。〇万が一",
         "チケットを誤ってご予約した際は",
@@ -2103,7 +2103,7 @@
         "整理番号順にて",
         "前方→一般→当日券の順となります。※開場開演時間は変更になる場合がございます。※再入場時1ドリンク代徴収となります。※ダイブ",
         "サーフ",
-        "リフト",
+        "リ��ト",
         "モッシュ等危険な行為は一切禁止とさせていただきます。悪質な場合はご退場頂く場合がございます。※当日の状況によっては検温",
         "マスク着用",
         "他のお客さまへの過度な接触禁止など",
@@ -2568,7 +2568,7 @@
         "KATACOTO*BANK",
         "Kitty_z",
         "君とのシナリオ",
-        "キュン!?恋堕ちキューピッド",
+        "キュン!?��堕ちキューピッド",
         "CoTei",
         "スーパーベイビーズ",
         "透色ドロップ",
@@ -3313,28 +3313,6 @@
       "schedules": [
         {
           "groupId": "grp-1792289674377",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-d_b_i_album_release_tour_day1",
-      "title": "Dead By Inches new album  &quot;never smile again (笑えない)&quot; release tour 2026-2027 Day 1",
-      "date": "2026-12-12",
-      "venue": "下北沢BASEMENTBAR&amp;THREE（東京都）",
-      "openTime": "12:00",
-      "startTime": "18:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/d_b_i_album_release_tour_day1",
-      "site": "LivePocket",
-      "performers": [],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
