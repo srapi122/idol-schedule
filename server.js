@@ -77,6 +77,105 @@ function fetchUrl(targetUrl, maxRedirects = 3) {
   });
 }
 
+// Helper: Strict Idol Group Keyword Matcher (Prevents false positives like FALMENCO for Falench.)
+function getGroupKeywords(groupName) {
+  const norm = (s) => (s || '').toLowerCase().replace(/[\s\.\*＊!！]/g, '');
+  const clean = norm(groupName);
+
+  if (clean.includes('falench') || clean.includes('ファレンチ')) {
+    return [/\bFalench\.?\b/i, /ファレンチ/];
+  }
+  if (clean.includes('jyapon') || clean.includes('ジャポン')) {
+    return [/SUPER\s*[\*☆]?\s*JYAPON/i, /スーパージャポン/i, /すーぱーじゃぽん/i];
+  }
+  if (clean.includes('てるてる')) {
+    return [/アイテムはてるてるのみ/, /てるてるのみ/, /てるてる/];
+  }
+  if (clean.includes('ネコプラ')) {
+    return [/ネコプラ/];
+  }
+  if (clean.includes('カタコト') || clean.includes('katacoto')) {
+    return [/KATACOTO[\s\*＊]*BANK/i, /カタコトバンク/];
+  }
+  if (clean.includes('真骨頂') || clean.includes('しんこっちょう')) {
+    return [/にっぽん[！!]\s*真骨頂/, /真骨頂/];
+  }
+  if (clean.includes('ネクスタリア') || clean.includes('nextaria')) {
+    return [/ネクスタリア/, /\bnextaria\b/i];
+  }
+  if (clean.includes('アオノシグナル') || clean.includes('青のシグナル')) {
+    return [/アオノシグナル/, /青のシグナル/];
+  }
+  if (clean.includes('アオハルブレイブ')) {
+    return [/アオハルブレイブ/];
+  }
+  if (clean.includes('ゆるっと革命団')) {
+    return [/ゆるっと革命団/];
+  }
+  if (clean.includes('びっくえんじぇる')) {
+    return [/びっくえんじぇる/, /ビッグエンジェル/i];
+  }
+
+  const escaped = groupName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return [new RegExp(escaped, 'i')];
+}
+
+function isIdolActuallyPerforming(htmlOrText, groupName) {
+  if (!htmlOrText || !groupName) return false;
+  const regexes = getGroupKeywords(groupName);
+  return regexes.some(r => r.test(htmlOrText));
+}
+
+// Helper: Extract performers completely (handles schema.org JSON-LD, meta keywords, and tags)
+function extractAllPerformers(html) {
+  const list = new Set();
+
+  // 1. Check schema.org JSON-LD (LivePocket standard)
+  const jsonLdMatches = html.matchAll(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi);
+  for (const m of jsonLdMatches) {
+    try {
+      const data = JSON.parse(m[1]);
+      const perf = data.performer?.name || data.performer || '';
+      if (typeof perf === 'string' && perf) {
+        perf.split(/[\/／,、]/).forEach(s => {
+          const c = s.trim();
+          if (c.length >= 2) list.add(c);
+        });
+      }
+      const desc = data.description || '';
+      const colonIdx = desc.lastIndexOf('：');
+      if (colonIdx !== -1) {
+        desc.slice(colonIdx + 1).split(/[\/／,、]/).forEach(s => {
+          const c = s.trim();
+          if (c.length >= 2) list.add(c);
+        });
+      }
+    } catch (e) {}
+  }
+
+  // 2. Check meta keywords
+  const metaKw = html.match(/<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']/i);
+  if (metaKw) {
+    metaKw[1].split(/[,、]/).forEach(s => {
+      const c = s.trim();
+      if (c.length >= 2 && !c.includes('チケット') && !c.includes('ライブポケット')) list.add(c);
+    });
+  }
+
+  // 3. Check出演 section
+  const cleanBody = html.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '');
+  const pMatch = cleanBody.match(/(?:出演(?:者)?|ARTIST[S]?|CAST)[\s:：]*([^\n]{3,400})/i);
+  if (pMatch) {
+    const rawSection = pMatch[1].replace(/<[^>]+>/g, ' ');
+    rawSection.split(/[\/／,、・\t]/).forEach(s => {
+      const c = s.trim();
+      if (c.length >= 2 && c.length < 35 && !c.includes('チケット') && !c.includes('入場')) list.add(c);
+    });
+  }
+
+  return [...list];
+}
+
 // Helper: HTML parser for Ticket sites (TIGET / TicketDive / LivePocket / General)
 function parseTicketHtml(html, ticketUrl) {
   let title = '';
@@ -84,7 +183,6 @@ function parseTicketHtml(html, ticketUrl) {
   let venue = '';
   let openTime = '';
   let startTime = '';
-  let performers = [];
 
   // Title extraction: prioritize <h1>, then meta og:title
   const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
@@ -118,11 +216,8 @@ function parseTicketHtml(html, ticketUrl) {
   if (openMatch) openTime = openMatch[1];
   if (startMatch) startTime = startMatch[1];
 
-  // Performers extraction
-  const pMatch = cleanHtml.match(/出演[：:\s]*([^\n<]+)/i) || cleanHtml.match(/ARTIST[S]?[：:\s]*([^\n<]+)/i);
-  if (pMatch) {
-    performers = pMatch[1].split(/[\/／,、]/).map(s => s.trim()).filter(Boolean);
-  }
+  // Robust performers extraction
+  const performers = extractAllPerformers(html);
 
   return {
     title: title || 'チケットサイト連携ライブ',
@@ -275,18 +370,8 @@ async function searchTicketDive(keyword) {
         isoDate = `${parts[0]}-${parts[1].padStart(2, '0')}-${parts[2].padStart(2, '0')}`;
       }
 
-      const cleanStr = (s) => (s || '').toLowerCase().replace(/[\s\.\*＊!！]/g, '');
-      const cleanKeyword = cleanStr(keyword);
-      const cardText = cleanStr(`${rawTitle} ${rawVenue} ${cardHtml}`);
-      let isHit = cardText.includes(cleanKeyword);
-      if (!isHit) {
-        if (keyword.includes('てるてる') && cardText.includes('てるてる')) isHit = true;
-        if (keyword.includes('ネコプラ') && cardText.includes('ネコプラ')) isHit = true;
-        if (keyword.includes('ジャポン') && cardText.includes('ジャポン')) isHit = true;
-        if (keyword.includes('真骨頂') && cardText.includes('真骨頂')) isHit = true;
-        if (keyword.includes('カタコト') && cardText.includes('カタコト')) isHit = true;
-      }
-      if (!isHit) continue;
+      const cardText = `${rawTitle} ${rawVenue} ${cardHtml}`;
+      if (!isIdolActuallyPerforming(cardText, keyword)) continue;
 
       events.push({
         id: `td-${eventHref.replace('/event/', '')}`,
@@ -379,6 +464,7 @@ async function searchLivePocket(keyword) {
     const html = fetchRes.body || '';
     const items = html.split('<li class="event-card-list__item">');
 
+    const candidateUrls = [];
     for (let i = 1; i < items.length; i++) {
       const item = items[i].split('</li>')[0];
       const linkMatch = item.match(/href="(\/e\/[^"]+)"/);
@@ -386,79 +472,73 @@ async function searchLivePocket(keyword) {
       const eventUrl = `https://livepocket.jp${linkMatch[1]}`;
       if (seenUrls.has(eventUrl)) continue;
       seenUrls.add(eventUrl);
+      candidateUrls.push(eventUrl);
+      if (candidateUrls.length >= 10) break;
+    }
 
-      const titleMatch = item.match(/class="[^"]*event-card__title[^"]*"[^>]*>([\s\S]*?)<\/h\d>/i) || item.match(/<h\d[^>]*>([\s\S]*?)<\/h\d>/i);
-      const dateMatch = item.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
-      const timeMatch = item.match(/時間[\s\S]*?(\d{1,2}:\d{2})/i) || item.match(/(\d{1,2}:\d{2})〜/);
-      const venueMatch = item.match(/会場[\s\S]*?<[^>]*>([\s\S]*?)<\/[^>]*>/i) || item.match(/会場\s*([^\n<]+)/i);
+    // Verify each candidate with strict secondary check
+    const verifyPromises = candidateUrls.map(u => 
+      fetchUrl(u)
+        .then(res => ({ url: u, html: res.body || '' }))
+        .catch(() => ({ url: u, html: '' }))
+    );
+    const verifiedPages = await Promise.all(verifyPromises);
 
-      let rawTitle = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : 'イベント';
-      let rawVenue = venueMatch ? venueMatch[1].replace(/<[^>]+>/g, '').trim() : 'ライブ会場';
-      let startTime = timeMatch ? timeMatch[1] : '12:30';
+    for (const page of verifiedPages) {
+      if (!page.html) continue;
 
-      let isoDate = '';
-      if (dateMatch) {
-        isoDate = `${dateMatch[1]}-${String(dateMatch[2]).padStart(2, '0')}-${String(dateMatch[3]).padStart(2, '0')}`;
+      // STRICT CHECK: Does this event ACTUALLY feature cleanKeyword?
+      if (!isIdolActuallyPerforming(page.html, cleanKeyword)) {
+        // Discard false positives like FALMENCO for Falench. or SUPER FANTASY for SUPER JYAPON
+        continue;
       }
 
+      const parsed = parseTicketHtml(page.html, page.url);
+      const eventId = page.url.split('/e/')[1] || `lp-${Date.now()}`;
+
       events.push({
-        id: `lp-${linkMatch[1].replace('/e/', '')}`,
+        id: `lp-${eventId}`,
         site: 'LivePocket',
-        title: rawTitle,
-        date: isoDate,
-        venue: rawVenue,
-        url: eventUrl,
+        title: parsed.title,
+        date: parsed.date,
+        venue: parsed.venue,
+        url: page.url,
         matchedGroup: cleanKeyword,
-        openTime: '12:00',
-        startTime: startTime
+        performers: parsed.performers.length > 0 ? parsed.performers : [cleanKeyword],
+        openTime: parsed.openTime,
+        startTime: parsed.startTime
       });
+
       if (events.length >= 8) break;
     }
   } catch (err) {
     console.error(`LivePocket keyword search error for ${cleanKeyword}:`, err.message);
   }
 
-  // 2. Organizer & Venue Deep Scanner: Check SCOT (i39be) & venue event bodies for keyword
+  // 2. Organizer & Venue Deep Scanner: Check SCOT (i39be) & venue event bodies with strict check
   try {
     const venuePages = await getLivePocketVenueEvents();
     for (const page of venuePages) {
       if (!page.html || seenUrls.has(page.url)) continue;
-      if (page.html.includes(cleanKeyword)) {
+
+      // STRICT CHECK: Verify keyword is truly in the page
+      if (isIdolActuallyPerforming(page.html, cleanKeyword)) {
         seenUrls.add(page.url);
 
-        const titleMatch = page.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || page.html.match(/<title>([^<]+)<\/title>/i);
-        const dateMatch = page.html.match(/(202[4-9])[年/.-](\d{1,2})[月/.-](\d{1,2})/);
-        const venueMatch = page.html.match(/(?:会場|場所|VENUE)[\s:：]*([^\n\r<]{2,40})/i);
-        const openMatch = page.html.match(/(?:OPEN|開場)[\s:：]*(\d{1,2}:\d{2})/i);
-        const startMatch = page.html.match(/(?:START|開演)[\s:：]*(\d{1,2}:\d{2})/i);
-
-        let isoDate = '';
-        if (dateMatch) {
-          isoDate = `${dateMatch[1]}-${String(dateMatch[2]).padStart(2, '0')}-${String(dateMatch[3]).padStart(2, '0')}`;
-        }
-
-        const cleanBody = (page.html || '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '');
-        const pMatch = cleanBody.match(/出演[：:\s]*([^\n<]+)/i) || cleanBody.match(/ARTIST[S]?[：:\s]*([^\n<]+)/i);
-        let performers = [];
-        if (pMatch) {
-          performers = pMatch[1].split(/[\/／,、\n]/).map(s => s.replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').trim()).filter(Boolean);
-        }
-        if (performers.length === 0) {
-          performers = [cleanKeyword];
-        }
-
+        const parsed = parseTicketHtml(page.html, page.url);
         const eventId = page.url.split('/e/')[1] || `lp-${Date.now()}`;
+
         events.push({
           id: `lp-${eventId}`,
           site: 'LivePocket',
-          title: titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : '対バンライブ',
-          date: isoDate,
-          venue: venueMatch ? venueMatch[1].trim() : '都内ライブ会場',
+          title: parsed.title,
+          date: parsed.date,
+          venue: parsed.venue,
           url: page.url,
           matchedGroup: cleanKeyword,
-          performers: performers,
-          openTime: openMatch ? openMatch[1] : '12:00',
-          startTime: startMatch ? startMatch[1] : '12:30'
+          performers: parsed.performers.length > 0 ? parsed.performers : [cleanKeyword],
+          openTime: parsed.openTime,
+          startTime: parsed.startTime
         });
       }
     }
@@ -709,11 +789,112 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // API 3: Sync State with Antigravity (リアルタイム状態同期)
-  if (pathname === '/api/sync-state' && req.method === 'POST') {
+// GitHub Cloud Storage Sync Configuration (configured via Render Environment variable GITHUB_TOKEN)
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+const GITHUB_OWNER = 'srapi122';
+const GITHUB_REPO = 'idol-schedule';
+const GITHUB_FILE = 'current_state.json';
+
+function githubApiRequest(apiPath, method, body = null) {
+  return new Promise((resolve, reject) => {
+    if (!GITHUB_TOKEN) return reject(new Error('GITHUB_TOKEN not configured'));
+    const options = {
+      hostname: 'api.github.com',
+      port: 443,
+      path: apiPath,
+      method: method,
+      headers: {
+        'User-Agent': 'Node-Idol-Cloud-Sync',
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    };
+    if (body) options.headers['Content-Type'] = 'application/json';
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        let parsed;
+        try { parsed = JSON.parse(data); } catch (e) { parsed = data; }
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(parsed);
+        } else {
+          reject(new Error(`GitHub API [${res.statusCode}]: ${typeof parsed === 'object' ? (parsed.message || JSON.stringify(parsed)) : parsed}`));
+        }
+      });
+    });
+    req.on('error', reject);
+    if (body) req.write(JSON.stringify(body));
+    req.end();
+  });
+}
+
+// Push state to GitHub repo asynchronously
+async function pushStateToGitHub(contentJsonStr, commitMsg = 'Update state via cloud sync') {
+  try {
+    const apiPath = `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+    let sha = undefined;
+    try {
+      const existing = await githubApiRequest(apiPath, 'GET');
+      if (existing && existing.sha) sha = existing.sha;
+    } catch (e) {}
+
+    const payload = {
+      message: commitMsg,
+      content: Buffer.from(contentJsonStr, 'utf8').toString('base64'),
+      branch: 'main'
+    };
+    if (sha) payload.sha = sha;
+    await githubApiRequest(apiPath, 'PUT', payload);
+    console.log('[GitHub Cloud Sync] current_state.json successfully committed to GitHub!');
+  } catch (err) {
+    console.error('[GitHub Cloud Sync Error]:', err.message);
+  }
+}
+
+// Load state from GitHub repo (fallback to local current_state.json)
+async function fetchStateFromGitHub() {
+  const localPath = path.join(__dirname, 'current_state.json');
+  let localData = null;
+  if (fs.existsSync(localPath)) {
+    try { localData = JSON.parse(fs.readFileSync(localPath, 'utf8')); } catch (e) {}
+  }
+
+  try {
+    const apiPath = `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+    const fileRes = await githubApiRequest(apiPath, 'GET');
+    if (fileRes && fileRes.content) {
+      const decoded = Buffer.from(fileRes.content, 'base64').toString('utf8');
+      const parsed = JSON.parse(decoded);
+      fs.writeFileSync(localPath, decoded, 'utf8');
+      return parsed;
+    }
+  } catch (err) {
+    console.log('[GitHub Cloud Sync] Using local current_state.json fallback');
+  }
+  return localData;
+}
+
+  // API 3: GET /api/state (Load shared cloud state across all devices)
+  if ((pathname === '/api/state' || pathname === '/api/sync-state') && req.method === 'GET') {
+    try {
+      const cloudState = await fetchStateFromGitHub();
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8' });
+      res.end(JSON.stringify({ success: true, data: cloudState }));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json; charset=UTF-8' });
+      res.end(JSON.stringify({ success: false, error: err.message }));
+    }
+    return;
+  }
+
+  // API 3: POST /api/sync-state (Save and push state to GitHub across all devices)
+  if ((pathname === '/api/sync-state' || pathname === '/api/state') && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => { body += chunk; });
-    req.on('end', () => {
+    req.on('end', async () => {
       try {
         const state = JSON.parse(body || '{}');
         const statePath = path.join(__dirname, 'current_state.json');
@@ -725,9 +906,14 @@ const server = http.createServer(async (req, res) => {
           groups: state.groups || [],
           events: state.events || []
         };
-        fs.writeFileSync(statePath, JSON.stringify(formatted, null, 2), 'utf8');
+        const jsonStr = JSON.stringify(formatted, null, 2);
+        fs.writeFileSync(statePath, jsonStr, 'utf8');
+
+        // Asynchronously commit to GitHub repo so Render restart never loses data
+        pushStateToGitHub(jsonStr, `Sync: ${state.lastAction || 'Device sync'}`).catch(() => {});
+
         res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8' });
-        res.end(JSON.stringify({ success: true, message: 'State synced to current_state.json' }));
+        res.end(JSON.stringify({ success: true, message: 'State synced to GitHub Cloud Storage' }));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json; charset=UTF-8' });
         res.end(JSON.stringify({ success: false, error: err.message }));
