@@ -995,7 +995,8 @@ async function fetchStateFromGitHub() {
           totalGroups: (state.groups || []).length,
           totalEvents: (state.events || []).length,
           groups: state.groups || [],
-          events: state.events || []
+          events: state.events || [],
+          dismissedEvents: state.dismissedEvents || []
         };
         const jsonStr = JSON.stringify(formatted, null, 2);
         fs.writeFileSync(statePath, jsonStr, 'utf8');
