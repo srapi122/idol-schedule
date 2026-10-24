@@ -618,17 +618,19 @@ async function searchAllTicketSites(keyword) {
 
   const combined = [...tigetEvents, ...ticketDiveEvents, ...livePocketEvents, ...payLoveEvents];
 
-  // 今日（本日）の日付: 2026-10-18
-  const today = '2026-10-18';
+  // 動的な日付判定: 前日（昨日）より前の過ぎたイベントは完全除外！
+  const now = new Date();
+  const yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+  const yesterdayStr = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, '0')}-${String(yesterday.getDate()).padStart(2, '0')}`;
 
-  // 過去（終了済み・去年等）のイベントを完全除外！今日以降（>= today）のみ抽出
+  // 前日より前（< yesterdayStr）の過ぎたイベントは完全除外！前日（昨日）以降のみ抽出
   const upcomingEvents = combined.filter(e => {
     if (!e.date) return false;
     const dMatch = e.date.match(/(\d{4})[年\/-](\d{1,2})[月\/-](\d{1,2})/);
     if (dMatch) {
       e.date = `${dMatch[1]}-${String(dMatch[2]).padStart(2, '0')}-${String(dMatch[3]).padStart(2, '0')}`;
     }
-    return e.date >= today;
+    return e.date >= yesterdayStr;
   });
 
   // 開催日が近い順（昇順：本日 ➔ 明日 ➔ 来週 ➔ 来月）で確実にソート
@@ -637,34 +639,50 @@ async function searchAllTicketSites(keyword) {
   return upcomingEvents;
 }
 
-// Ticket Site Real Verification & Search Engine (TIGET, TicketDive, LivePocket, PayLove)
+// Ticket Site Real Verification & Search Engine (TIGET, TicketDive, LivePocket, PayLove) - Fast Parallel Crawler
 async function crawlGroupNotices(groups) {
   const discoveredEvents = [];
   const logs = [];
 
-  logs.push(`[${new Date().toLocaleTimeString()}] 登録推し ${groups.length} 組の4大チケットサイト（TIGET・TicketDive・LivePocket・PayLove）一括巡回を開始...`);
-  logs.push(`🏢 主催者ページ（SCOT / FreeK: livepocket.jp/p/i39be 等）および主要ライブハウスも深掘り巡回中...`);
+  logs.push(`[${new Date().toLocaleTimeString()}] 登録推し ${groups.length} 組の4大チケットサイト（TIGET・TicketDive・LivePocket・PayLove）高速並列巡回を開始...`);
 
   if (!groups || groups.length === 0) {
     logs.push(`❌ 推しグループが登録されていません。「推し設定」タブでグループを登録してください。`);
     return { events: [], logs };
   }
 
-  for (const grp of groups) {
-    const groupName = grp.name;
-    logs.push(`🔍 「${groupName}」の出演イベントを4大サイト（TIGET / TicketDive / LivePocket / PayLove）で検索中...`);
+  // Pre-warm LivePocket organizer/venue pages once for all groups to save time
+  try {
+    await getLivePocketVenueEvents();
+  } catch (e) {}
 
-    const events = await searchAllTicketSites(groupName);
-    if (events.length > 0) {
+  // Parallel search across all groups (fast, prevents Render 504 timeout)
+  const groupResults = await Promise.all(groups.map(async grp => {
+    const groupName = grp.name;
+    try {
+      const events = await searchAllTicketSites(groupName);
+      return { groupName, events, success: true };
+    } catch (err) {
+      return { groupName, events: [], error: err.message };
+    }
+  }));
+
+  const seenUrls = new Set();
+  for (const res of groupResults) {
+    if (res.events && res.events.length > 0) {
       const sitesCount = {};
-      events.forEach(e => { sitesCount[e.site] = (sitesCount[e.site] || 0) + 1; });
+      res.events.forEach(e => { sitesCount[e.site] = (sitesCount[e.site] || 0) + 1; });
       const breakdown = Object.entries(sitesCount).map(([k, v]) => `${k}:${v}件`).join(', ');
 
-      logs.push(`  🎉 実在イベントを計 ${events.length} 件検出！ (${breakdown})`);
-      logs.push(`     直近: ${events[0].date} [${events[0].site}] 「${events[0].title}」`);
-      discoveredEvents.push(...events);
+      logs.push(`🔍 「${res.groupName}」: 計 ${res.events.length} 件検出！ (${breakdown})`);
+      for (const ev of res.events) {
+        if (!seenUrls.has(ev.url || ev.id)) {
+          seenUrls.add(ev.url || ev.id);
+          discoveredEvents.push(ev);
+        }
+      }
     } else {
-      logs.push(`  ℹ️ 各チケットサイト上に「${groupName}」の直近出演予定は見つかりませんでした。`);
+      logs.push(`ℹ️ 「${res.groupName}」: 直近のチケット販売予定なし`);
     }
   }
 
