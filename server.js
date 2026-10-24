@@ -941,18 +941,23 @@ async function pushStateToGitHub(contentJsonStr, commitMsg = 'Update state via c
     await githubApiRequest(apiPath, 'PUT', payload);
     console.log('[GitHub Cloud Sync] current_state.json successfully committed to GitHub!');
   } catch (err) {
-    console.error('[GitHub Cloud Sync Error]:', err.message);
+    console.error('[GitHub Cloud Sync] Push failed:', err.message);
   }
 }
 
-// Load state from GitHub repo (fallback to local current_state.json)
-async function fetchStateFromGitHub() {
+// Load state from local current_state.json (Single Source of Truth), fallback to GitHub if file missing
+async function fetchCurrentState() {
   const localPath = path.join(__dirname, 'current_state.json');
-  let localData = null;
   if (fs.existsSync(localPath)) {
-    try { localData = JSON.parse(fs.readFileSync(localPath, 'utf8')); } catch (e) {}
+    try {
+      const data = JSON.parse(fs.readFileSync(localPath, 'utf8'));
+      if (data && (Array.isArray(data.groups) || Array.isArray(data.events))) {
+        return data;
+      }
+    } catch (e) {}
   }
 
+  // Fallback to GitHub only if local current_state.json does not exist
   try {
     const apiPath = `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
     const fileRes = await githubApiRequest(apiPath, 'GET');
@@ -963,15 +968,16 @@ async function fetchStateFromGitHub() {
       return parsed;
     }
   } catch (err) {
-    console.log('[GitHub Cloud Sync] Using local current_state.json fallback');
+    console.log('[GitHub Cloud Sync] GitHub fallback unavailable, using empty state');
   }
-  return localData;
+
+  return { groups: [], events: [], totalGroups: 0, totalEvents: 0 };
 }
 
-  // API 3: GET /api/state (Load shared cloud state across all devices)
+  // API 3: GET /api/state (Load shared cloud state with zero rollback)
   if ((pathname === '/api/state' || pathname === '/api/sync-state') && req.method === 'GET') {
     try {
-      const cloudState = await fetchStateFromGitHub();
+      const cloudState = await fetchCurrentState();
       res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8' });
       res.end(JSON.stringify({ success: true, data: cloudState }));
     } catch (err) {
@@ -981,7 +987,7 @@ async function fetchStateFromGitHub() {
     return;
   }
 
-  // API 3: POST /api/sync-state (Save and push state to GitHub across all devices)
+  // API 3: POST /api/sync-state (Save and push state immediately across all devices)
   if ((pathname === '/api/sync-state' || pathname === '/api/state') && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => { body += chunk; });
@@ -995,17 +1001,16 @@ async function fetchStateFromGitHub() {
           totalGroups: (state.groups || []).length,
           totalEvents: (state.events || []).length,
           groups: state.groups || [],
-          events: state.events || [],
-          dismissedEvents: state.dismissedEvents || []
+          events: state.events || []
         };
         const jsonStr = JSON.stringify(formatted, null, 2);
         fs.writeFileSync(statePath, jsonStr, 'utf8');
 
-        // Asynchronously commit to GitHub repo so Render restart never loses data
+        // Asynchronously commit to GitHub repo as background backup
         pushStateToGitHub(jsonStr, `Sync: ${state.lastAction || 'Device sync'}`).catch(() => {});
 
         res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8' });
-        res.end(JSON.stringify({ success: true, message: 'State synced to GitHub Cloud Storage' }));
+        res.end(JSON.stringify({ success: true, message: 'State synced immediately' }));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json; charset=UTF-8' });
         res.end(JSON.stringify({ success: false, error: err.message }));
