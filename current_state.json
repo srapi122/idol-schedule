@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 16:45:14",
+  "syncedAt": "2026/10/24 16:47:54",
   "lastAction": "イベント更新",
   "totalGroups": 11,
-  "totalEvents": 80,
+  "totalEvents": 79,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -889,7 +889,7 @@
         "必ずキャンセルの手続きをお願い致します。〇記入の際は必ず",
         "ご予約様のお名前(お一人様必須)",
         "電話番号",
-        "お目当ての��ループ名などの明記を必ず記載お願い致します。尚",
+        "お目当てのグループ名などの明記を必ず記載お願い致します。尚",
         "1項目でも抜けてある場合は",
         "当日扱い対象となりますのでご注意ください。〇公演当日お一人様に複数のご予約がある場合はご予約分全てのご入場料金を頂くなどの処置を取らさせて頂きます。〇万が一",
         "チケットを誤ってご予約した際は",
@@ -1484,30 +1484,6 @@
       "schedules": [
         {
           "groupId": "grp-1792292767100",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-amhall1029",
-      "title": "ワッツ◎さーくる 木曜定期公演vol.285〜Halloween LIVE〜",
-      "date": "2026-10-29",
-      "venue": "梅田amHALL",
-      "openTime": "18:00",
-      "startTime": "18:20",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/amhall1029",
-      "site": "LivePocket",
-      "performers": [
-        "Falench."
-      ],
-      "notes": "LivePocket連携 (Falench.)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -2139,7 +2115,7 @@
       "url": "https://tiget.net/events/530368",
       "site": "TIGET",
       "performers": [
-        "Blueberry Girls 空想ロマンス mementoa UNBS(アンビス) センチメンタル喫茶 THE EUPHORIA きゅんぱに！ Gimme!×Gimme! 折れないし���ぽ &CUTE Cheriecla BUNGEE GUM. LEVEL7 spiralia【スピラリア】 LiVREAL【リブリアル】 iCONiQ ConnectCall TubeRose 終末のアンセム スーパーベイビーズ SWANTICK wolfwaltz iCON! 水木春花&川瀬千帆 スターチスのラブレター HERO CHARM SEKAMONO LAST PiECE Varia Noise. 会場:Zirco Tokyo 会場：新宿Zirco Tokyo開場：11:00開演：11:20料金前方￥4",
+        "Blueberry Girls 空想ロマンス mementoa UNBS(アンビス) センチメンタル喫茶 THE EUPHORIA きゅんぱに！ Gimme!×Gimme! 折れないしっぽ &CUTE Cheriecla BUNGEE GUM. LEVEL7 spiralia【スピラリア】 LiVREAL【リブリアル】 iCONiQ ConnectCall TubeRose 終末のアンセム スーパーベイビーズ SWANTICK wolfwaltz iCON! 水木春花&川瀬千帆 スターチスのラブレター HERO CHARM SEKAMONO LAST PiECE Varia Noise. 会場:Zirco Tokyo 会場：新宿Zirco Tokyo開場：11:00開演：11:20料金前方￥4",
         "000一般¥2",
         "000※D代別当日券＋￥1",
         "000【公演に関する注意事項】※入場は",
@@ -3291,7 +3267,7 @@
         "スクリーンショットでの横流しなど",
         "主催者が不正と判断した方法での購入が発覚した場合",
         "入場をお断りいたします。その際のチケット代の返金は致しません。※BOT(ボット)などのツールを使用しての不正チケット購入を禁止しております。発覚した場合は",
-        "入場をお断りいたします。その際のチケット代���返金は致しません。※お客様都合によるチケットの払い戻しは原則致しません",
+        "入場をお断りいたします。その際のチケット代の返金は致しません。※お客様都合によるチケットの払い戻しは原則致しません",
         "お間違いのないようにご注意下さい。※払い戻しは公演中止の場合のみとなります。主催：mini TIF 実行委員会協力：TOKYO IDOL PROJECT\" name=\"description\"",
         ">"
       ],
