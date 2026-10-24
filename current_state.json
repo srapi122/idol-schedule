@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/24 17:02:09",
-  "lastAction": "アプリ初期起動・状態同期",
+  "syncedAt": "2026/10/24 17:02:21",
+  "lastAction": "イベント更新",
   "totalGroups": 11,
-  "totalEvents": 70,
+  "totalEvents": 78,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -885,7 +885,7 @@
         "必ずキャンセルの手続きをお願い致します。〇記入の際は必ず",
         "ご予約様のお名前(お一人様必須)",
         "電話番号",
-        "お目当てのグループ名などの明記を必���記載お願い致します。尚",
+        "お目当てのグループ名などの明記を必ず記載お願い致します。尚",
         "1項目でも抜けてある場合は",
         "当日扱い対象となりますのでご注意ください。〇公演当日お一人様に複数のご予約がある場合はご予約分全てのご入場料金を頂くなどの処置を取らさせて頂きます。〇万が一",
         "チケットを誤ってご予約した際は",
@@ -2103,7 +2103,7 @@
         "整理番号順にて",
         "前方→一般→当日券の順となります。※開場開演時間は変更になる場合がございます。※再入場時1ドリンク代徴収となります。※ダイブ",
         "サーフ",
-        "リ��ト",
+        "リフ���",
         "モッシュ等危険な行為は一切禁止とさせていただきます。悪質な場合はご退場頂く場合がございます。※当日の状況によっては検温",
         "マスク着用",
         "他のお客さまへの過度な接触禁止など",
@@ -2568,7 +2568,7 @@
         "KATACOTO*BANK",
         "Kitty_z",
         "君とのシナリオ",
-        "キュン!?��堕ちキューピッド",
+        "キュン!?恋���ちキューピッド",
         "CoTei",
         "スーパーベイビーズ",
         "透色ドロップ",
@@ -3251,6 +3251,182 @@
       "schedules": [
         {
           "groupId": "grp-1792826937667",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-lwcpe",
+      "title": "ONE UNITY〜Road to Miyako〜",
+      "date": "2026-11-28",
+      "venue": "DININGBAR WHYNOT（神奈川県）",
+      "openTime": "12:00",
+      "startTime": "18:00",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/lwcpe",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (KATACOTO*BANK)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-soundgarden2026",
+      "title": "ART SOUND presents 【SOUND GARDEN 2026】 ART SOUND 15th Anniversary",
+      "date": "2026-11-28",
+      "venue": "Zephyr Hall / ReNY limited / RAD HALL / DIVA / RAD NINE（愛知県）",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/soundgarden2026",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-sfjt2026-o",
+      "title": "SUPER FANTASY JAPAN TOUR 2026- UNCHARTED -&lt;大阪公演&gt;",
+      "date": "2026-11-28",
+      "venue": "PLUSWIN HALL 大阪（大阪府）",
+      "openTime": "12:00",
+      "startTime": "17:30",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/sfjt2026-o",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-20261130",
+      "title": "Marty Holoubek Trio II × Gensuke Kanki Trio W Release Party",
+      "date": "2026-11-30",
+      "venue": "WWW（東京都）",
+      "openTime": "12:00",
+      "startTime": "19:30",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/20261130",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (KATACOTO*BANK)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-sfjt2026-n",
+      "title": "SUPER FANTASY JAPAN TOUR 2026- UNCHARTED -&lt;名古屋公演&gt;",
+      "date": "2026-12-05",
+      "venue": "レジェンドホール（愛知県）",
+      "openTime": "12:00",
+      "startTime": "17:00",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/sfjt2026-n",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-d_b_i_album_release_tour_day1",
+      "title": "Dead By Inches new album  &quot;never smile again (笑えない)&quot; release tour 2026-2027 Day 1",
+      "date": "2026-12-12",
+      "venue": "下北沢BASEMENTBAR&amp;THREE（東京都）",
+      "openTime": "12:00",
+      "startTime": "18:00",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/d_b_i_album_release_tour_day1",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (Falench.)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-sfjt2026-y",
+      "title": "SUPER FANTASY JAPAN TOUR 2026- UNCHARTED -&lt;横浜公演&gt;",
+      "date": "2026-12-12",
+      "venue": "LANDMARK HALL（神奈川県）",
+      "openTime": "12:00",
+      "startTime": "16:30",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/sfjt2026-y",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-jjvok",
+      "title": "JAPAN CUMBIA FESTIVAL 2026",
+      "date": "2026-12-13",
+      "venue": "新宿MARZ（東京都）",
+      "openTime": "12:00",
+      "startTime": "13:00",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/jjvok",
+      "site": "LivePocket",
+      "performers": [],
+      "notes": "LivePocket連携 (KATACOTO*BANK)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
