@@ -212,6 +212,7 @@ class IdolRadarApp {
     this.pendingParsedEvent = null;
 
     this.initElements();
+    this.cleanInvalidEvents(); // Automatically purge non-relevant events (e.g. SUPER FANTASY) and past events on startup
     this.bindEvents();
     this.render();
     this.syncStateWithAntigravity('アプリ初期起動・状態同期');
@@ -271,6 +272,11 @@ class IdolRadarApp {
               localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(this.events));
               needsRender = true;
             }
+          }
+
+          // Automatically clean non-relevant events (e.g. SUPER FANTASY) or expired events after merge
+          if (this.cleanInvalidEvents()) {
+            needsRender = true;
           }
 
           if (needsRender) {
@@ -677,6 +683,8 @@ https://tiget.net/events/sample-nov15`;
               }
             });
 
+            this.cleanInvalidEvents();
+
             if (addedCount > 0 || mergedGroupCount > 0) {
               this.saveEvents();
               this.render();
@@ -977,6 +985,50 @@ https://tiget.net/events/sample-nov15`;
       if (ev.performers.some(p => regexes.some(r => r.test(p)))) return true;
     }
     if (ev.notes && regexes.some(r => r.test(ev.notes))) return true;
+    return false;
+  }
+
+  isEventActuallyValid(ev) {
+    if (!ev || !ev.title) return false;
+    // Strictly verify: Does this event actually feature ANY registered idol group?
+    // Eliminates unrelated events (SUPER FANTASY, ワッツ◎さーくる, etc.) purely via logical relevance (NO blacklists)
+    return this.groups.some(g => this.isGroupActuallyInEvent(g.name, ev));
+  }
+
+  cleanInvalidEvents(notify = false) {
+    if (!Array.isArray(this.events)) return false;
+
+    // Filter 1: Logical Relevance (Discards any event that does NOT feature any registered group)
+    const relevantEvents = this.events.filter(ev => {
+      const isValid = this.isEventActuallyValid(ev);
+      if (!isValid) {
+        console.log(`[AUTO-CLEAN] Purged non-relevant event: "${ev.title}" (${ev.url || ''})`);
+      }
+      return isValid;
+    });
+
+    // Filter 2: Past Events Auto-Purge (Exclude events before yesterday)
+    const now = new Date();
+    const yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+    const yesterdayStr = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, '0')}-${String(yesterday.getDate()).padStart(2, '0')}`;
+
+    const activeEvents = relevantEvents.filter(ev => {
+      if (!ev.date) return false;
+      const dMatch = ev.date.match(/(\d{4})[年\/-](\d{1,2})[月\/-](\d{1,2})/);
+      const iso = dMatch ? `${dMatch[1]}-${String(dMatch[2]).padStart(2, '0')}-${String(dMatch[3]).padStart(2, '0')}` : ev.date;
+      return iso >= yesterdayStr;
+    });
+
+    if (activeEvents.length !== this.events.length) {
+      const removedCount = this.events.length - activeEvents.length;
+      this.events = activeEvents;
+      localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(this.events));
+      this.syncStateWithAntigravity('誤検出イベント・過去イベントの自動健全化パージ');
+      if (notify) {
+        this.showToast(`誤検出・過去のライブ ${removedCount} 件を自動整理しました`, 'info');
+      }
+      return true;
+    }
     return false;
   }
 
