@@ -601,7 +601,16 @@ https://tiget.net/events/sample-nov15`;
             body: JSON.stringify({ groups: this.groups })
           });
 
-          const data = await res.json();
+          const rawText = await res.text();
+          let data;
+          try {
+            data = JSON.parse(rawText);
+          } catch (pe) {
+            throw new Error(res.status === 504 || res.status === 502 
+              ? 'サーバー通信タイムアウト（処理件数が多いため、もう一度お試しください）' 
+              : 'サーバー一時応答エラー（スリープ復帰待機中）');
+          }
+
           if (data.success) {
             crawlLogContent.innerHTML = '';
             (data.logs || []).forEach(log => {
@@ -636,7 +645,7 @@ https://tiget.net/events/sample-nov15`;
               this.showToast(data.events && data.events.length > 0 ? '検知されたライブは全て登録済みです' : '直近のチケット販売イベントはありませんでした', 'pink');
             }
           } else {
-            crawlLogContent.innerHTML += `<div style="color:var(--accent-red);">エラー: ${data.error}</div>`;
+            crawlLogContent.innerHTML += `<div style="color:var(--accent-red);">エラー: ${data.error || '不明なエラー'}</div>`;
           }
         } catch (e) {
           crawlLogContent.innerHTML += `<div style="color:var(--accent-red);">巡回通信エラー: ${e.message}</div>`;
@@ -1236,6 +1245,27 @@ https://tiget.net/events/sample-nov15`;
     };
   }
 
+  // 前日（昨日）より前の過ぎたイベントを自動消去
+  purgeExpiredPastEvents() {
+    const now = new Date();
+    // 前日（昨日）の 00:00:00 を算出 (YYYY-MM-DD)
+    const yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+    const yesterdayStr = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, '0')}-${String(yesterday.getDate()).padStart(2, '0')}`;
+
+    const originalCount = this.events.length;
+    this.events = this.events.filter(e => {
+      if (!e.date) return false;
+      const dMatch = e.date.match(/(\d{4})[年\/-](\d{1,2})[月\/-](\d{1,2})/);
+      const isoDate = dMatch ? `${dMatch[1]}-${String(dMatch[2]).padStart(2, '0')}-${String(dMatch[3]).padStart(2, '0')}` : e.date;
+      return isoDate >= yesterdayStr;
+    });
+
+    if (this.events.length < originalCount) {
+      console.log(`[Auto Purge] 前日より前の過去イベントを ${originalCount - this.events.length} 件 自動消去しました`);
+      this.saveEvents('前日より前の過ぎたイベント自動消去');
+    }
+  }
+
   // ==========================================
   // 4. Render Methods
   // ==========================================
@@ -1248,6 +1278,7 @@ https://tiget.net/events/sample-nov15`;
 
   // 4.1 Render Events List & Overlap radar
   renderEventsList() {
+    this.purgeExpiredPastEvents();
     // Filter & Search
     let list = [...this.events];
 
