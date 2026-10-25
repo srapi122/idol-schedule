@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/10/25 12:31:28",
-  "lastAction": "イベント更新",
+  "syncedAt": "2026/10/26 1:23:11",
+  "lastAction": "誤検出イベント・過去イベントの自動健全化パージ",
   "totalGroups": 11,
-  "totalEvents": 70,
+  "totalEvents": 62,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -95,301 +95,69 @@
   ],
   "events": [
     {
-      "id": "lp-shibuya1024",
-      "title": "ブループラネットライブ vol.81",
-      "date": "2026-10-24",
-      "venue": "渋谷近未来会館",
-      "openTime": "11:50",
-      "startTime": "12:05",
+      "id": "lp-ring1025",
+      "title": "ライブジム 第76弾",
+      "date": "2026-10-25",
+      "venue": "渋谷RING",
+      "openTime": "9:35",
+      "startTime": "9:50",
       "status": "considering",
-      "url": "https://livepocket.jp/e/shibuya1024",
+      "url": "https://livepocket.jp/e/ring1025",
       "site": "LivePocket",
       "performers": [
-        "ぶっとび！パンデミック",
         "ネコプラpixx.",
-        "Falench.",
+        "アイテムはてるてるのみ",
         "にっぽん！真骨頂",
-        "SUPER JYAPON"
-      ],
-      "notes": "LivePocket連携 (Falench., SUPER JYAPON, にっぽん！真骨頂)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        },
-        {
-          "groupId": "grp-1792289674377",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        },
-        {
-          "groupId": "grp-1792292767100",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-shibuya-1024",
-      "title": "すこフェス Day10",
-      "date": "2026-10-24",
-      "venue": "渋谷近未来会館",
-      "openTime": "18:40",
-      "startTime": "18:55",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/shibuya-1024",
-      "site": "LivePocket",
-      "performers": [
         "ぶっとび！パンデミック",
-        "ネコプラpixx.",
-        "Falench.",
-        "にっぽん！真骨頂",
-        "BANKURUWASE!!",
-        "チルミチル"
+        "KATACOTO＊BANK",
+        "KATA☆CHU",
+        "ドキドキハキミノセイ",
+        "Aproof",
+        "MiDi ON!",
+        "&nbsp; buGG",
+        "「いつかのネバーランド」",
+        "ルシフェルの園。",
+        "Panic Monster !n Wonderland",
+        "Connect Call",
+        "ゆにきゅーと",
+        "MORE*",
+        "&amp;CUTE",
+        "むーぷり",
+        "かけっこ！",
+        "LUNARISE",
+        "JumpingKiss&nbsp;",
+        "HEROINES SCHOOL C2",
+        "HEROINES SCHOOL A1",
+        "HEROINES SCHOOL C1",
+        "ArcanaCharm",
+        "LiVREAL",
+        "spiralia",
+        "君とのシナリオ",
+        "恋に落ちる確率は限りなく低いが0じゃない<",
+        "恋に落ちる確率は限りなく低いが0じゃない"
       ],
-      "notes": "LivePocket連携 (Falench., にっぽん！真骨頂)",
+      "notes": "LivePocket連携 (KATACOTO*BANK, アイテムはてるてるのみ, にっぽん！真骨頂)",
       "schedules": [
         {
-          "groupId": "grp-1792289326921",
+          "groupId": "grp-1792288011098",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
           "tokutenEnd": ""
         },
-        {
-          "groupId": "grp-1792292767100",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-7mzz2",
-      "title": "木ノ下凛花 卒業カンパ",
-      "date": "2026-10-24",
-      "venue": "のイベントを検索",
-      "openTime": "12:00",
-      "startTime": "12:30",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/7mzz2",
-      "site": "LivePocket",
-      "performers": [
-        "木ノ下凛花",
-        "SUPER JYAPON",
-        "\">出演者"
-      ],
-      "notes": "LivePocket連携 (SUPER JYAPON)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289674377",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-rinka-last1024",
-      "title": "木ノ下凛花卒業公演2026~君と作る最高のフィナーレ。~",
-      "date": "2026-10-24",
-      "venue": "渋谷近未来会館",
-      "openTime": "16:40",
-      "startTime": "16:50",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/rinka-last1024",
-      "site": "LivePocket",
-      "performers": [
-        "SUPER JYAPON",
-        "食べ物持込み禁止",
-        "モッシュ",
-        "リフト等禁止"
-      ],
-      "notes": "LivePocket連携 (SUPER JYAPON)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289674377",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-amhall1024",
-      "title": "言いたいこと君にあるんだ〜五大都市ツアー 大阪編〜",
-      "date": "2026-10-24",
-      "venue": "梅田amHALL",
-      "openTime": "12:00",
-      "startTime": "14:20",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/amhall1024",
-      "site": "LivePocket",
-      "performers": [
-        "アイテムはてるてるのみ"
-      ],
-      "notes": "LivePocket連携 (アイテムはてるてるのみ)",
-      "schedules": [
         {
           "groupId": "grp-1792289628663",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
           "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "td-daia1024_1",
-      "title": "ピリッと月とネクスタリア",
-      "date": "2026-10-24",
-      "venue": "渋谷DAIA",
-      "openTime": "12:00",
-      "startTime": "12:30",
-      "status": "considering",
-      "url": "https://ticketdive.com/event/daia1024_1",
-      "site": "TicketDive",
-      "performers": [
-        "ネクスタリア"
-      ],
-      "notes": "TicketDive連携 (ネクスタリア)",
-      "schedules": [
-        {
-          "groupId": "grp-1792289727807",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "tiget-531267",
-      "title": "「ZEST SUPER LIVE」AKIBA TWILIGHT☆...",
-      "date": "2026-10-24",
-      "venue": "東京都",
-      "openTime": "12:00",
-      "startTime": "12:30",
-      "status": "considering",
-      "url": "https://tiget.net/events/531267",
-      "site": "TIGET",
-      "performers": [
-        "♮リアスクライブ May Love Rouge KATACOTO＊BANK KATA☆CHU SHINKA↑ ヴィランの掟 Krays WONDARIA ドキドキハキミノセイ ココロモノローグ アリス革命。 キミリセット MIRIAH TheHighRoller #ヒトメボレ ＊ 青空ダイアリー ＊ Clapotis 会場:秋葉原ZEST ---------------------------------------------------------------公演名：「ZEST SUPER LIVE」AKIBA TWILIGHT☆NEON IDOL CIRCUIT編公演日：10",
-        "24（土）会　場：秋葉原ZEST時　間：開場：15：10　開演：15：25（予定）※変更の可能性ございます料　金：一般2",
-        "500円（D別）当日500円UP※予約のみ・当日払い出　演：♮リアスクライブ",
-        "May Love Rouge",
-        "KATACOTO＊BANK",
-        "KATA☆CHU",
-        "SHINKA↑",
-        "ヴィランの掟",
-        "Krays",
-        "WONDARIA",
-        "ドキドキハキミノセイ",
-        "ココロモノローグ",
-        "アリス革命。",
-        "キミリセット",
-        "MIRIAH",
-        "TheHighRoller",
-        "#ヒトメボレ",
-        "＊ 青空ダイアリー ＊",
-        "Clapotis※順不同主催：SUPER LIVE 2026実行委員会---------------------------------------------------------------\" name=\"description\"",
-        ">"
-      ],
-      "notes": "TIGET連携 (KATACOTO*BANK)",
-      "schedules": [
-        {
-          "groupId": "grp-1792288011098",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "tiget-531223",
-      "title": "「ZEST SUPER LIVE」AKIBA DAYLIGHT☆...",
-      "date": "2026-10-24",
-      "venue": "東京都",
-      "openTime": "12:00",
-      "startTime": "12:30",
-      "status": "considering",
-      "url": "https://tiget.net/events/531223",
-      "site": "TIGET",
-      "performers": [
-        "このアイドルはフィクションです。 キュン!?恋堕ちキューピッド 終幕劇場 ルシフェルの園。 憑依中毒-シャーマンホリック- ツヅリカ KATACOTO＊BANK KATA☆CHU SHINKA↑ AILOS Maison*Lily TubeRose WONDARIA ひなてん！ キミリセット THAT&#39;s So Clapotis 会場:秋葉原ZEST ---------------------------------------------------------------公演名：「ZEST SUPER LIVE」AKIBA DAYLIGHT☆FREE IDOL PARADE編公演日：10",
-        "24（土）会　場：秋葉原ZEST時　間：開場：10：00　開演：10：15（予定）※変更の可能性ございます料　金：一般0円（要予約・枚数限定）前方3",
-        "000円（各D別）当日500円UP※予約のみ・当日払い出　演：このアイドルはフィクションです。",
-        "キュン!?恋堕ちキューピッド",
-        "終幕劇場",
-        "ルシフェルの園。",
-        "憑依中毒-シャーマンホリック-",
-        "ツヅリカ",
-        "KATACOTO＊BANK",
-        "KATA☆CHU",
-        "SHINKA↑",
-        "AILOS",
-        "Maison*Lily",
-        "TubeRose",
-        "WONDARIA",
-        "ひなてん！",
-        "キミリセット",
-        "THAT&#39;s So",
-        "Clapotis※順不同主催：SUPER LIVE 2026実行委員会---------------------------------------------------------------\" name=\"description\"",
-        ">"
-      ],
-      "notes": "TIGET連携 (KATACOTO*BANK)",
-      "schedules": [
-        {
-          "groupId": "grp-1792288011098",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
-        }
-      ]
-    },
-    {
-      "id": "lp-ring1025",
-      "title": "ライブジム 第76弾",
-      "date": "2026-10-25",
-      "venue": "渋谷RING",
-      "openTime": "11:30",
-      "startTime": "12:00",
-      "status": "considering",
-      "url": "https://livepocket.jp/e/ring1025",
-      "notes": "LivePocket連携 (KATACOTO*BANK, アイテムはてるてるのみ, にっぽん！真骨頂)",
-      "schedules": [
-        {
-          "groupId": "grp-1792288011098",
-          "liveStart": "17:20",
-          "liveEnd": "17:35",
-          "tokutenStart": "18:10",
-          "tokutenEnd": "19:10"
-        },
-        {
-          "groupId": "grp-1792289326921",
-          "liveStart": "13:00",
-          "liveEnd": "13:20",
-          "tokutenStart": "13:30",
-          "tokutenEnd": "14:30"
         },
         {
           "groupId": "grp-1792292767100",
-          "liveStart": "15:30",
-          "liveEnd": "15:45",
-          "tokutenStart": "16:25",
-          "tokutenEnd": "17:25"
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
         }
       ]
     },
@@ -597,21 +365,33 @@
       "startTime": "12:30",
       "status": "considering",
       "url": "https://ticketdive.com/event/sukofes-Day11",
+      "site": "TicketDive",
+      "performers": [
+        "月とソーダ",
+        "SUPER JYAPON",
+        "BANKURUWASE!!",
+        "ミスティア！",
+        "Amairo-Flip",
+        "『アイコノクラズム』",
+        "ぶっとび！パンデミック",
+        "にっぽん！真骨頂",
+        "PHiZZ"
+      ],
       "notes": "TicketDive連携 (SUPER JYAPON, にっぽん！真骨頂)",
       "schedules": [
         {
           "groupId": "grp-1792289674377",
-          "liveStart": "21:05",
-          "liveEnd": "21:25",
-          "tokutenStart": "21:30",
-          "tokutenEnd": "22:30"
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
         },
         {
           "groupId": "grp-1792292767100",
-          "liveStart": "19:20",
-          "liveEnd": "19:40",
-          "tokutenStart": "19:50",
-          "tokutenEnd": "20:50"
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
         }
       ]
     },
