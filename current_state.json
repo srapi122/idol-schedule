@@ -1,8 +1,8 @@
 {
-  "syncedAt": "2026/11/4 18:12:05",
-  "lastAction": "誤検出イベント・過去イベントの自動健全化パージ",
+  "syncedAt": "2026/11/4 18:12:42",
+  "lastAction": "イベント更新",
   "totalGroups": 11,
-  "totalEvents": 32,
+  "totalEvents": 59,
   "groups": [
     {
       "id": "grp-1792288011098",
@@ -199,6 +199,54 @@
       "schedules": [
         {
           "groupId": "grp-1792826937667",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-kataban_nyannyann1104",
+      "title": "KATACOTO＊BANK単独公演vol.45〜にゃんにゃん編〜",
+      "date": "2026-11-04",
+      "venue": "SPACE UENO",
+      "openTime": "12:00",
+      "startTime": "20:00",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/kataban_nyannyann1104",
+      "site": "TicketDive",
+      "performers": [
+        "KATACOTO＊BANK"
+      ],
+      "notes": "TicketDive連携 (KATACOTO*BANK)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-kataban_shintaiseinewmusic1104",
+      "title": "KATACOTO＊BANK単独公演vol.44〜新体制初お披露目曲編〜",
+      "date": "2026-11-04",
+      "venue": "SPACE UENO",
+      "openTime": "12:00",
+      "startTime": "17:45",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/kataban_shintaiseinewmusic1104",
+      "site": "TicketDive",
+      "performers": [
+        "KATACOTO＊BANK"
+      ],
+      "notes": "TicketDive連携 (KATACOTO*BANK)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -435,7 +483,10 @@
         "なないろパンダちゃん。",
         "ネクスタリア",
         "CAL&amp;RES",
-        "なないろパン"
+        "なないろパン",
+        "Cherie!",
+        "PiRiRi",
+        "コングラッ"
       ],
       "notes": "TicketDive連携 (Falench., ネクスタリア)",
       "schedules": [
@@ -483,7 +534,7 @@
         "events",
         "527553予約開始▷ 10",
         "3(土) 21:15〜　▷整理号順に入場（TiGET予約＞当日券）　▷ジャンプ・モッシュ・リフト・ダイブ・前後左右への移動 禁止！◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇注意事項・当日のご入場は（TiGET予約）でご入場いただき",
-        "その後に当日券にてお求め頂いた方順で販売致します。当日券のご用意がない場合もございます。・ジャンプ・モッシュ・リフト・ダイブ・前後左右への移動は禁止とさせていただきます。　ご注意させていただき改善されない場合は退出いただく可能性がございます。その際入場料のご返金は致しかねます。・ご購入された券種のエリアより前に入っての不正観覧を発見した場合はご退場いただく場合がございます。その際の入場料のご返金は致しかねます。・こちらのイベントは再入場可能(+1D別途)となります。・ホールフロア内への飲食物及び",
+        "その後に当日券にてお求め頂いた方順で販売致します。当日券のご用意がない場合もございます。・ジャンプ・モッシュ・リフト・ダイブ・前後左右への移動は禁止とさせていただきます。　ご注意させていただき改善されない場合は退出いただく可能性がございます。その際入場料のご返金は致しかねます。・ご購入された券種のエリアより前に入っての不正観覧を発見した場合はご退場いた���く場合がございます。その際の入場料のご返金は致しかねます。・こちらのイベントは再入場可能(+1D別途)となります。・ホールフロア内への飲食物及び",
         "危険と判断される物の持ち込みは固くお断りいたします。アルコールを飲酒されてのご入場はお断りさせていただく場合もございますのでご了承ください。・イベントなど開始時間",
         "終了時間が変更になる可能性もございます。予めご了承ください。 ・イベント会場内では",
         "係員の指示に従っていただきますようお願いいたします。 ・上記禁止事項が守られない",
@@ -617,6 +668,213 @@
       "schedules": [
         {
           "groupId": "grp-1792289806064",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "tiget-533712",
+      "title": "「FUTURE: SUPER LIVE」32色のイルミナ☆ドリー...",
+      "date": "2026-11-07",
+      "venue": "東京都",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://tiget.net/events/533712",
+      "site": "TIGET",
+      "performers": [
+        "エラバレシ Next☆Rico I&#39;Rink Anluce♡Sugar ぽけっとファントム きゅんﾀﾋに一生を!? ESTLINK☆ krays AOSTARIA ConnectCall re:INCARNATION BANZAI JAPAN いつだって青い春。 ヴィランの掟 KATACOTO＊BANK KATA☆CHU SHINKA↑ chocolat d’ange Fancy Film* オトメルキュール Varia Noise. jamstep 青春のフロンティア アイスクリーム夢少女 傾奇隊 Try me Maison*Lily LOVE IZ DOLL 道玄坂69 ど〜げん坂69 アリス革命。 MIRIAH 会場:大塚FUTURE: ---------------------------------------------------------------公演名：「FUTURE: SUPER LIVE」32色のイルミナ☆ドリームパーク編公演日：11",
+        "7(土)時　間： 開場10：00　開演10：20予定※変更される場合ございます会　場：大塚FUTURE:料　金：前方4",
+        "000円",
+        "一般3",
+        "000円（各D別）※当日500円UP※予約のみ・当日払い出　演：エラバレシ",
+        "Next☆Rico",
+        "I&#39;Rink",
+        "Anluce♡Sugar",
+        "ぽけっとファントム",
+        "きゅんﾀﾋに一生を!?",
+        "ESTLINK☆",
+        "Krays",
+        "AOSTARIA",
+        "ConnectCall",
+        "Re:INCARNATION",
+        "BANZAI JAPAN",
+        "いつだって青い春。",
+        "ヴィランの掟",
+        "KATACOTO＊BANK",
+        "KATA☆CHU",
+        "SHINKA↑",
+        "chocolat d’ange",
+        "Fancy Film*",
+        "オトメルキュール",
+        "Varia Noise.",
+        "jamstep",
+        "青春のフロンティア",
+        "アイスクリーム夢少女",
+        "傾奇隊",
+        "Try me",
+        "Maison*Lily",
+        "LOVE IZ DOLL",
+        "道玄坂69",
+        "ど〜げん坂69",
+        "アリス革命。",
+        "MIRIAH※順不同主催：SUPER LIVE 2026実行委員会---------------------------------------------------------------\" name=\"description\"",
+        ">"
+      ],
+      "notes": "TIGET連携 (KATACOTO*BANK)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-ring1107",
+      "title": "すこフェス Day13",
+      "date": "2026-11-07",
+      "venue": "渋谷RING",
+      "openTime": "9:45",
+      "startTime": "10:00",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/ring1107",
+      "site": "LivePocket",
+      "performers": [
+        "めいどinみんな！",
+        "KACHIDOKI",
+        "CoTei",
+        "星合いのライラック",
+        "大スッキ♡新党！",
+        "FLORERISA",
+        "LUNARISE",
+        "Endresst",
+        "KAIJU ON THE STAGE",
+        "KATACOTO＊BANK",
+        "KATA☆CHU",
+        "ぶっとび！パンデミック",
+        "アイテムはてるてるのみ",
+        "ネコプラpixx.",
+        "SUPER JYAPON",
+        "Falench.",
+        "気まぐれモンスター",
+        "むーぷり",
+        "あ！恋見つけちゃいました…♡",
+        "プライマリタイズ",
+        "昼夜逆転",
+        "時田えみり",
+        "Reverse Tokyo",
+        "ラフティア",
+        "恋に落ちる確率は限りなく低いが0じゃない        ▼備考",
+        "モッシュ",
+        "リフト等の危険行為禁止",
+        "酒気帯び禁止"
+      ],
+      "notes": "LivePocket連携 (KATACOTO*BANK, Falench., アイテムはてるてるのみ, SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289628663",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "tiget-535816",
+      "title": "前編【 IDOL CONTENT EXPO ＠TwinBox G...",
+      "date": "2026-11-07",
+      "venue": "都内ライブハウス",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://tiget.net/events/535816",
+      "site": "TIGET",
+      "performers": [
+        "会場:TwinBox GARAGE 【出演】アオノシグナル",
+        "AZの理由",
+        "スリジエ",
+        "New Crown",
+        "Miluμ!",
+        "メノニューイヤー",
+        "melt × melts",
+        "UNION×CARAT",
+        "LEVEL7 (五十音順)※再入場時1D ※入場規制有■備考欄にて",
+        "お目当てのグループ名をご記入願います。\" name=\"description\"",
+        ">"
+      ],
+      "notes": "TIGET連携 (アオノシグナル)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289423712",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-IDOLetter_1107",
+      "title": "IDOLetter（アイドレター）",
+      "date": "2026-11-07",
+      "venue": "中野坂上S.U.B",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/IDOLetter_1107",
+      "site": "TicketDive",
+      "performers": [
+        "ルルエクレール",
+        "OLiDOL!",
+        "Descris.",
+        "DA•BAMBI",
+        "Rociena",
+        "Lily",
+        "ステラリオン",
+        "きゅんぱに！",
+        "Melo＊Traum",
+        "ノベルノア",
+        "相沢瞳",
+        "ミヤコワスレ",
+        "Margaret",
+        "X3NA",
+        "TheHighRoller",
+        "＊ 青空ダイアリー ＊",
+        "#ヒトメボレ",
+        "再生のルクトゥミー"
+      ],
+      "notes": "TicketDive連携 (きゅんぱに！)",
+      "schedules": [
+        {
+          "groupId": "grp-1792826937667",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -759,6 +1017,90 @@
       ]
     },
     {
+      "id": "lp-ring-1108",
+      "title": "ライブジム 第77弾",
+      "date": "2026-11-08",
+      "venue": "渋谷RING",
+      "openTime": "10:50",
+      "startTime": "11:05",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/ring-1108",
+      "site": "LivePocket",
+      "performers": [
+        "Lily wonder",
+        "THE EUPHORIA",
+        "&nbsp; JumpingKiss",
+        "miao",
+        "KACHIDOKI",
+        "REMIC",
+        "ゆるっと革命団",
+        "ラプラス",
+        "純真アムレット",
+        "RURU:MERY",
+        "LuNaria",
+        "KATACOTO＊BANK",
+        "KATA☆CHU",
+        "FLORERISA",
+        "LOVE 9 LOVE",
+        "OTOMICHI",
+        "LumiDay",
+        "&amp;CUTE",
+        "BANKURUWWASE!!",
+        "むーぷり",
+        "Lily",
+        "はぐっと！",
+        "Lumiétoile",
+        "Blueberry Girls",
+        "センチメンタル喫茶",
+        "Lって何のLですか？",
+        "LittleSignal",
+        "Reverse Tokyo",
+        "ネコプラpixx.",
+        "SUPER JYAPON",
+        "アイテムはてるてるのみ",
+        "Falench.",
+        "ぶっとび！パンデミック"
+      ],
+      "notes": "LivePocket連携 (KATACOTO*BANK, Falench., アイテムはてるてるのみ, SUPER JYAPON, ゆるっと革命団)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289628663",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289752960",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
       "id": "td-OKBNBZCH38GkfFxIyNkI",
       "title": "SAY-LA ケセラセイラツアー 東京編",
       "date": "2026-11-09",
@@ -782,6 +1124,100 @@
       "schedules": [
         {
           "groupId": "grp-1792289752960",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-livegym78",
+      "title": "ライブジム 第78弾",
+      "date": "2026-11-10",
+      "venue": "渋谷VIDENT",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/livegym78",
+      "site": "TicketDive",
+      "performers": [
+        "ネコプラpixx.",
+        "Falench.",
+        "アイテムはてるてるのみ",
+        "SUPER JYAPON",
+        "ぶっとび！パンデミック",
+        "CoTei",
+        "ギガLOVEアップビート",
+        "KATACOTO＊BANK",
+        "KATA☆CHU",
+        "LOVE 9 LOVE",
+        "FLORERISA",
+        "純真アムレット",
+        "アオノシグナル",
+        "笑う門には福来る",
+        "桃色革命",
+        "ラビットビット",
+        "HEROINES SCHOOL B1"
+      ],
+      "notes": "TicketDive連携 (KATACOTO*BANK, Falench., アオノシグナル, アイテムはてるてるのみ, SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289423712",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289628663",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-kimishina1110",
+      "title": "君とのシナリオpresents.『君と描く、軌跡』",
+      "date": "2026-11-10",
+      "venue": "渋谷Starlounge",
+      "openTime": "18:30",
+      "startTime": "19:00",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/kimishina1110",
+      "site": "TicketDive",
+      "performers": [
+        "君とのシナリオ",
+        "『Try VII』",
+        "ネクスタリア"
+      ],
+      "notes": "TicketDive連携 (ネクスタリア)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289727807",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -833,6 +1269,36 @@
       "schedules": [
         {
           "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-UK_1112",
+      "title": "UK祭-スポーツの秋SP-",
+      "date": "2026-11-12",
+      "venue": "中野坂上S.U.B",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/UK_1112",
+      "site": "TicketDive",
+      "performers": [
+        "Lunaria",
+        "TERIOS",
+        "ステラリオン",
+        "neOen",
+        "My Starry Diary",
+        "踊れ！神風",
+        "きゅんぱに！"
+      ],
+      "notes": "TicketDive連携 (きゅんぱに！)",
+      "schedules": [
+        {
+          "groupId": "grp-1792826937667",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -930,6 +1396,192 @@
       ]
     },
     {
+      "id": "td-ICFG-vol32",
+      "title": "ICFG〜偶像文化推し娘〜 vol.32",
+      "date": "2026-11-14",
+      "venue": "渋谷vident",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/ICFG-vol32",
+      "site": "TicketDive",
+      "performers": [
+        "miluμ！",
+        "ai*ai",
+        "アイテムはてるてるのみ",
+        "iRiNE",
+        "As a Cutie Pomeranian",
+        "Anluce♡Sugar",
+        "有頂天メリー！",
+        "éclatcia",
+        "Lって何のLですか？",
+        "caSTORY研究生",
+        "KATACOTO＊BANK",
+        "KATA☆CHU",
+        "Kitty_z",
+        "SAKURADOLL",
+        "SHINKA↑",
+        "SUPER JYAPON",
+        "スプスラッシュ",
+        "センチメンタル喫茶",
+        "Tool to",
+        "撫子の音返し",
+        "New Crown",
+        "ネコプラpixx.",
+        "遥か",
+        "彼方。",
+        "Falench.",
+        "vVibe!",
+        "ぶっとび！パンデミック",
+        "MiX BeRRY",
+        "MiDi ON!",
+        "Melodys High",
+        "めろでぃぷれいす",
+        "LOVEME",
+        "LittleSignal",
+        "LEVEL7"
+      ],
+      "notes": "TicketDive連携 (KATACOTO*BANK, Falench., アイテムはてるてるのみ, SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289628663",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-agefes1114",
+      "title": "AGE FES",
+      "date": "2026-11-14",
+      "venue": "渋谷音楽堂",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/agefes1114",
+      "site": "LivePocket",
+      "performers": [
+        "ネコプラpixx.",
+        "Falench.",
+        "アイテムはてるてるのみ",
+        "SUPER JYAPON",
+        "ぶっとび！パンデミック",
+        "SAI²Rium",
+        "ハレとハレ！",
+        "Bibbidi Chu",
+        "Lって何のLですか？",
+        "LittleSignal",
+        "iCON!",
+        "Mix BeRRY",
+        "ラフティア",
+        "エイアイカ",
+        "ラビットビット"
+      ],
+      "notes": "LivePocket連携 (Falench., アイテムはてるてるのみ, SUPER JYAPON)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289628663",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "tiget-534590",
+      "title": "ゆるっと革命団１１周年記念ワンマンライブ",
+      "date": "2026-11-14",
+      "venue": "東京都",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://tiget.net/events/534590",
+      "site": "TIGET",
+      "performers": [
+        "ゆるっと革命団 菅原ひな 会場:Gotanda G6",
+        "G7 2026年 11月 14日（土）■タイトル　ゆるっと革命団１１周年記念ワンマンライブ■会場　GOTANDA G7　（品川区西五反田２丁目６−３ 東洋ビル B1）■時間　18:50開場",
+        "19:10開演■料金　前売Sチケット ¥5",
+        "000-",
+        "当日Sチケット ¥5",
+        "500-　（各1D別）　　　　前売Aチケット ¥2",
+        "000-",
+        "当日Aチケット ¥2",
+        "500-　　　　カメラチケット ¥8",
+        "000-　　　　＊当日券のご用意がない場合もございます■出演　ゆるっと革命団■ゲスト　菅原ひな＜タイムテーブル＞　18:50開場　19:10開演　19:10〜20:50　ライブ　21:00〜22:40　特典会https:",
+        "tiget.net",
+        "events",
+        "534590　▷整理号順に入場（紙チケS →紙チケA →.TiGET予約A → 当日券 の順）　▷ジャンプ・リフト・モッシュ禁止。　⚠️紙チケット(S",
+        "A",
+        "Camera)",
+        "Aチケまとめ買いのご注文はこちらから　　　https:",
+        "gravityshop.theshop.jp",
+        "categories",
+        "6366734　　　ライブ現場での特典会でも販売を行なっております注意事項・当日のご入場は",
+        "紙チケットのお客様のあと",
+        "TiGET予約 番号順でご入場いただき",
+        "その後に当日券にてお求め頂いた方順で販売致します。当日券のご用意がない場合もございます。・ジャンプ・モッシュ・リフト・ダイブ・前後左右への移動は禁止とさせていただきます。　ご注意させていただき改善されない場合は退出いただく可能性がございます。その際入場料のご返金は致しかねます。・ご購入された券種のエリアより前に入っての不正観覧を発見した場合はご退場いただく場合がございます。その際の入場料のご返金は致しかねます。・入場の整列は開場の10分前からとなります。・ホールフロア内への飲食物及び",
+        "危険と判断される物の持ち込みは固くお断りいたします。アルコールを飲酒されてのご入場はお断りさせていただく場合もございますのでご了承ください。・イベントなど開始時間",
+        "終了時間が変更になる可能性もございます。予めご了承ください。 ・イベント会場内では",
+        "係員の指示に従っていただきますようお願いいたします。 ・上記禁止事項が守られない",
+        "係員の指示に従わないなど",
+        "迷惑行為を行ったと主催及び係員に判断された場合",
+        "開演中如何にかかわらずご退場いただきます。またその際の返金などは一切応じられませんのでご了承ください。 ・出演者は予告無く変更となる場合がございます。その際の返金などは一切応じられませんのでご了承ください。 ・お荷物",
+        "貴重品はお客様ご自身で管理いただき",
+        "盗難時は弊社は一切の責任を負いませんのでご了承下さい。 ・会場内でのトラブルや",
+        "お客様同士での怪我",
+        "破損時は弊社は一切の責任を負いませんのでご了承下さい。\" name=\"description\"",
+        ">"
+      ],
+      "notes": "TIGET連携 (ゆるっと革命団)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289752960",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
       "id": "lp-selest_1115",
       "title": "「SELENE STADIUM」",
       "date": "2026-11-15",
@@ -1006,6 +1658,177 @@
       ]
     },
     {
+      "id": "td-agefes1115",
+      "title": "AGE FES",
+      "date": "2026-11-15",
+      "venue": "神田明神ホール",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/agefes1115",
+      "site": "TicketDive",
+      "performers": [
+        "Lunaria",
+        "なんキニ！",
+        "強がりセンセーション",
+        "月とソーダ",
+        "&CUTE",
+        "MATE×MATE!",
+        "Aerolipop",
+        "TERIOS",
+        "COLOR of COLOR",
+        "アオノシグナル",
+        "PiRiRi",
+        "KAIJU ON THE STAGE",
+        "君にメインヒロイン",
+        "ON THE AIR",
+        "AOSTARIA",
+        "ギガLOVEアップビート",
+        "Poppin’ Parade",
+        "Lily wonder",
+        "CAL&RES",
+        "パラレルサイダー",
+        "ラビットビット",
+        "まねきケチャ",
+        "恋に落ちる確率は限りなく低いが0じゃない。",
+        "LittleSignal",
+        "&amp;CUTE",
+        "CAL&amp;RES"
+      ],
+      "notes": "TicketDive連携 (アオノシグナル)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289423712",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-idolmariage_81",
+      "title": "アイドルマリアージュVol.81～全組30分SP～",
+      "date": "2026-11-15",
+      "venue": "新宿DHNoA",
+      "openTime": "10:40",
+      "startTime": "10:55",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/idolmariage_81",
+      "site": "TicketDive",
+      "performers": [
+        "BANZAI JAPAN",
+        "♮リアスクライブ",
+        "ルージュブック",
+        "思い出とプレゼント",
+        "マイノリティアラート",
+        "BOCCHI。",
+        "HAPPY CREATORS",
+        "Lって何のLですか？",
+        "LittleSignal",
+        "トウトイナ。",
+        "翔んでファレノプシス",
+        "君のメインヒロイン",
+        "MELYUME",
+        "ネクスタリア",
+        "UPDANCE Lily -Team A-",
+        "UPDANCE Lily -Team B-",
+        "アオノシグナル"
+      ],
+      "notes": "TicketDive連携 (アオノシグナル, ネクスタリア)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289423712",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289727807",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-Aoharu_15",
+      "title": "ZUTTOMOTTO presents アオハル vol.15",
+      "date": "2026-11-15",
+      "venue": "EBiS303",
+      "openTime": "10:00",
+      "startTime": "10:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/Aoharu_15",
+      "site": "TicketDive",
+      "performers": [
+        "ZUTTOMOTTO",
+        "ガガピエロ",
+        "Pastel Closet",
+        "ハルカエコー",
+        "Root mimi",
+        "ネクスタリア",
+        "17秒前の瞬きに光を",
+        "SAI²Rium",
+        "ハレとハレ！",
+        "Bibbidi Chu"
+      ],
+      "notes": "TicketDive連携 (ネクスタリア)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289727807",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-261115g2",
+      "title": "ワンコインBOMBER!!",
+      "date": "2026-11-15",
+      "venue": "GOTANDA G2",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/261115g2",
+      "site": "TicketDive",
+      "performers": [
+        "室田瑞希",
+        "空想と妄想とキミの恋した世界",
+        "陽向楽くるみ（桃色革命）",
+        "姫輝あゆ（桃色革命）",
+        "山口満里奈（桃色革命）",
+        "ひとつキラリ",
+        "Sistersあにま",
+        "蓋然性オルトイズム",
+        "にとくり。",
+        "メモワールパルファム",
+        "ルートプリュフォール",
+        "シブヤDOMINION",
+        "わんだふるぱれーど！",
+        "Jumping Kiss",
+        "ゆるっと革命団",
+        "ラプラス",
+        "純真アムレット",
+        "亜利美里",
+        "奏音コレクト"
+      ],
+      "notes": "TicketDive連携 (ゆるっと革命団)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289752960",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
       "id": "td-hosoda_happybirthday1116",
       "title": "漢、細田尚希！34才生誕祭",
       "date": "2026-11-16",
@@ -1065,6 +1888,53 @@
       "schedules": [
         {
           "groupId": "grp-1792289674377",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-kanfes_1118",
+      "title": "冠Fes-カンフェス-GO!!",
+      "date": "2026-11-18",
+      "venue": "BLAZE GOTANDA",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/kanfes_1118",
+      "site": "TicketDive",
+      "performers": [
+        "まねきケチャ",
+        "点染テンセイ少女。",
+        "テラテラ",
+        "ネクスタリア",
+        "BABY BLOOM",
+        "メイビーME",
+        "ルージュブック",
+        "mementoa",
+        "iCON!",
+        "ハニースパイスRe.",
+        "スリジエ",
+        "ミライズ",
+        "UPDANCE Lily -Team A-",
+        "UPDANCE Lily -Team B-",
+        "アイドル革命",
+        "玉響storage",
+        "オカシリゾート",
+        "MiiS",
+        "ハレとハレ！",
+        "SAI²Rium",
+        "メノニューイヤー",
+        "魔訶不思議変革者-デスデス-",
+        "有頂天メリー！",
+        "踊れ！神風"
+      ],
+      "notes": "TicketDive連携 (ネクスタリア)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289727807",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -1170,6 +2040,152 @@
       ]
     },
     {
+      "id": "td-dolmariage_82",
+      "title": "アイドルマリアージュVol.82",
+      "date": "2026-11-21",
+      "venue": "ベルサール虎ノ門",
+      "openTime": "10:00",
+      "startTime": "10:10",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/dolmariage_82",
+      "site": "TicketDive",
+      "performers": [
+        "放課後プリンセス",
+        "強がりセンセーション",
+        "LEVEL7",
+        "ai*ai",
+        "ゆるっと革命団",
+        "ラプラス",
+        "Dolly Kiss",
+        "ブルーなままで",
+        "カリスマめんざいふっ！",
+        "マイノリティアラート",
+        "I&#x27;mew（あいみゅう）",
+        "kimikara（きみから）",
+        "可愛いって言わないと呪う！",
+        "RUN WiTH YOU",
+        "New Crown",
+        "miluμ！",
+        "éclatcia",
+        "終末のアンセム",
+        "IWI!",
+        "セツナソウ",
+        "NEFRALISE",
+        "君のメインヒロイン",
+        "らぶららら",
+        "NORMiL",
+        "來未あい",
+        "寄絃-Yo2La-",
+        "Chime de Happy",
+        "黎明リフレイン"
+      ],
+      "notes": "TicketDive連携 (ゆるっと革命団)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289752960",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-tsukinohonokaHBD2026",
+      "title": "月乃ほのか生誕祭",
+      "date": "2026-11-21",
+      "venue": "中野坂上S.U.B Tokyo",
+      "openTime": "16:10",
+      "startTime": "16:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/tsukinohonokaHBD2026",
+      "site": "TicketDive",
+      "performers": [
+        "月乃ほのか",
+        "きゅんぱに！"
+      ],
+      "notes": "TicketDive連携 (きゅんぱに！)",
+      "schedules": [
+        {
+          "groupId": "grp-1792826937667",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "lp-kf_m9",
+      "title": "MITSUBACHI ROCK CIRCUIT 2026",
+      "date": "2026-11-23",
+      "venue": "都内ライブハウス",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://livepocket.jp/e/kf_m9",
+      "site": "LivePocket",
+      "performers": [
+        "松本梨香",
+        "ちぃたん☆KISS〜愛のROCK BAND〜",
+        "ちょこはち",
+        "眉村ちあき",
+        "仮面女子",
+        "びっくえんじぇる",
+        "LADYBABY",
+        "魁（ALLiCA）",
+        "シュレーディンガーの犬",
+        "BABYTANTS",
+        "LAVILITH",
+        "戦国アニマル極楽浄土",
+        "Meteorite of the huge ICE",
+        "pipia",
+        "フェノメナ",
+        "FreeAquaButterfly",
+        "はるちょん",
+        "82回目の終身刑",
+        "ノーサイドアウトサイダー",
+        "eba",
+        "もえのあずき",
+        "ルシフェルの園。",
+        "LYL",
+        "Re:BLUE",
+        "きゅんきゅん♡ぷりえーる",
+        "Buzzer01＆.",
+        "RED-i",
+        "葉月",
+        "DA・BAMBI",
+        "幻色シアター",
+        "びびっとキュート",
+        "スーパーマカロニサラダ",
+        "SPiCA",
+        "リニアメイド",
+        "QUON",
+        "異国のルミナリア",
+        "THE+BETH",
+        "唯世夏凪",
+        "applique",
+        "流星楽団",
+        "LOVE IZ DOLL",
+        "ARIStoCRAT",
+        "My Criminal Lovers",
+        "Re:Yu",
+        "ど〜げんざか69",
+        "あのこはCEO",
+        "桐亜"
+      ],
+      "notes": "LivePocket連携 (びっくえんじぇる)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289806064",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
       "id": "td-iDLAND13",
       "title": "あいらんど Chapter13",
       "date": "2026-11-24",
@@ -1203,6 +2219,91 @@
       "schedules": [
         {
           "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-261125_PF",
+      "title": "POLAROID - FREE -",
+      "date": "2026-11-25",
+      "venue": "原宿RUIDO",
+      "openTime": "16:00",
+      "startTime": "16:20",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/261125_PF",
+      "site": "TicketDive",
+      "performers": [
+        "&CUTE",
+        "AISTEAL",
+        "Blueberry Girls",
+        "LumiDay",
+        "OTOMICHI",
+        "アオノシグナル",
+        "キミイロプロジェクト",
+        "きゅんﾀﾋに一生を!?",
+        "センチメンタル喫茶",
+        "てんしめし！",
+        "めろでぃーぷれいす",
+        "ラフティア",
+        "リボンクロック",
+        "&amp;CUTE"
+      ],
+      "notes": "TicketDive連携 (アオノシグナル)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289423712",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-DREAMBOX1128",
+      "title": "GOTANDA DREAMBOX",
+      "date": "2026-11-28",
+      "venue": "GOTANDA G6",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/DREAMBOX1128",
+      "site": "TicketDive",
+      "performers": [
+        "ぽけっとファントム",
+        "Re:INCARNATION",
+        "キミイロプロジェクト",
+        "LUNARISE",
+        "オトメルキュール",
+        "シュピネス",
+        "INSRiA",
+        "終幕劇場",
+        "アイスクリーム夢少女",
+        "傾奇隊",
+        "縷々",
+        "蓋然性オルトイズム",
+        "Sistersあにま",
+        "にとくり。",
+        "TEARS-ティアーズ-",
+        "ルートプリュフォール",
+        "メモワールパルファム",
+        "ひとつキラリ",
+        "WinkU",
+        "jamstep",
+        "MEMORI",
+        "キミイロユース",
+        "きゅんぱに！",
+        "UNION×CARAT",
+        "Cortile"
+      ],
+      "notes": "TicketDive連携 (きゅんぱに！)",
+      "schedules": [
+        {
+          "groupId": "grp-1792826937667",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
@@ -1296,6 +2397,122 @@
       ]
     },
     {
+      "id": "td-SHEROCollectionvol1_1129",
+      "title": "SHERO Collection vol.1",
+      "date": "2026-11-29",
+      "venue": "渋谷RING",
+      "openTime": "15:35",
+      "startTime": "15:50",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/SHEROCollectionvol1_1129",
+      "site": "TicketDive",
+      "performers": [
+        "KATA☆CHU",
+        "KATACOTO＊BANK",
+        "SHINKA↑",
+        "アオハルブレイブ",
+        "はいどーも！テラスマです！",
+        "BANKURUWASE!!",
+        "夜とメルク",
+        "NO FRAME",
+        "純真アムレット",
+        "RURU:MERRY",
+        "ゆるっと革命団",
+        "ラプラス",
+        "奏音コレクト",
+        "むーぷり",
+        "きみはれ。"
+      ],
+      "notes": "TicketDive連携 (KATACOTO*BANK, アオハルブレイブ, ゆるっと革命団)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289697131",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289752960",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-261206_BBH",
+      "title": "バズバズリサイタル HOT!!",
+      "date": "2026-12-06",
+      "venue": "渋谷音楽堂",
+      "openTime": "12:00",
+      "startTime": "12:30",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/261206_BBH",
+      "site": "TicketDive",
+      "performers": [
+        "オカシリゾート",
+        "JAPANARIZM",
+        "ベンジャス！",
+        "Aivery",
+        "わんふぁす！",
+        "てんしめし！",
+        "トウトイナ。",
+        "Aurora",
+        "Melodys High",
+        "miao",
+        "Falench.",
+        "kimikara（きみから）",
+        "玉響storage",
+        "NORMiL",
+        "MiX BeRRY",
+        "夢みるアドレセンス",
+        "mementoa",
+        "MORE*",
+        "君とのシナリオ",
+        "アオノシグナル",
+        "YumeLia",
+        "遥か",
+        "彼方。",
+        "iCON!",
+        "UNDO",
+        "&CUTE",
+        "スターチスのラブレター",
+        "Rea Lis",
+        "白地図プロローグ",
+        "チルミチル",
+        "FLORERISA",
+        "リルアムール",
+        "KissBee",
+        "&amp;CUTE"
+      ],
+      "notes": "TicketDive連携 (Falench., アオノシグナル)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289326921",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        },
+        {
+          "groupId": "grp-1792289423712",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
       "id": "lp-aoharu1st-brave",
       "title": "アオハルブレイブ1STワンマン 『僕らがBRAVE』",
       "date": "2026-12-17",
@@ -1312,6 +2529,54 @@
       "schedules": [
         {
           "groupId": "grp-1792289697131",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-2026eri",
+      "title": "びっくえんじぇる多田えりプロデュース生誕祭",
+      "date": "2026-12-21",
+      "venue": "SHIBUYA DIVE",
+      "openTime": "17:00",
+      "startTime": "18:00",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/2026eri",
+      "site": "TicketDive",
+      "performers": [
+        "びっくえんじぇる"
+      ],
+      "notes": "TicketDive連携 (びっくえんじぇる)",
+      "schedules": [
+        {
+          "groupId": "grp-1792289806064",
+          "liveStart": "",
+          "liveEnd": "",
+          "tokutenStart": "",
+          "tokutenEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "td-katabanoneman_reborninthesky1231",
+      "title": "KATACOTO＊BANKワンマンライブ〜Reborn in the Sky〜",
+      "date": "2026-12-31",
+      "venue": "SHIBUYA DIVE",
+      "openTime": "12:00",
+      "startTime": "15:10",
+      "status": "considering",
+      "url": "https://ticketdive.com/event/katabanoneman_reborninthesky1231",
+      "site": "TicketDive",
+      "performers": [
+        "KATACOTO＊BANK"
+      ],
+      "notes": "TicketDive連携 (KATACOTO*BANK)",
+      "schedules": [
+        {
+          "groupId": "grp-1792288011098",
           "liveStart": "",
           "liveEnd": "",
           "tokutenStart": "",
