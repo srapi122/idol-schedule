@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026/11/12 11:28:30",
+  "syncedAt": "2026/11/12 11:31:10",
   "lastAction": "イベント更新",
   "totalGroups": 11,
   "totalEvents": 58,
@@ -337,72 +337,35 @@
       "startTime": "12:30",
       "status": "considering",
       "url": "https://ticketdive.com/event/ICFG-vol32",
-      "site": "TicketDive",
-      "performers": [
-        "miluμ！",
-        "ai*ai",
-        "アイテムはてるてるのみ",
-        "iRiNE",
-        "As a Cutie Pomeranian",
-        "Anluce♡Sugar",
-        "有頂天メリー！",
-        "éclatcia",
-        "Lって何のLですか？",
-        "caSTORY研究生",
-        "KATACOTO＊BANK",
-        "KATA☆CHU",
-        "Kitty_z",
-        "SAKURADOLL",
-        "SHINKA↑",
-        "SUPER JYAPON",
-        "スプスラッシュ",
-        "センチメンタル喫茶",
-        "Tool to",
-        "撫子の音返し",
-        "New Crown",
-        "ネコプラpixx.",
-        "遥か",
-        "彼方。",
-        "Falench.",
-        "vVibe!",
-        "ぶっとび！パンデミック",
-        "MiX BeRRY",
-        "MiDi ON!",
-        "Melodys High",
-        "めろでぃぷれいす",
-        "LOVEME",
-        "LittleSignal",
-        "LEVEL7"
-      ],
       "notes": "TicketDive連携 (KATACOTO*BANK, Falench., アイテムはてるてるのみ, SUPER JYAPON)",
       "schedules": [
         {
           "groupId": "grp-1792288011098",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
+          "liveStart": "15:35",
+          "liveEnd": "15:55",
+          "tokutenStart": "16:05",
+          "tokutenEnd": "17:05"
         },
         {
           "groupId": "grp-1792289326921",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
+          "liveStart": "17:00",
+          "liveEnd": "17:20",
+          "tokutenStart": "17:30",
+          "tokutenEnd": "18:30"
         },
         {
           "groupId": "grp-1792289628663",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
+          "liveStart": "17:40",
+          "liveEnd": "18:00",
+          "tokutenStart": "18:10",
+          "tokutenEnd": "19:10"
         },
         {
           "groupId": "grp-1792289674377",
-          "liveStart": "",
-          "liveEnd": "",
-          "tokutenStart": "",
-          "tokutenEnd": ""
+          "liveStart": "18:20",
+          "liveEnd": "18:40",
+          "tokutenStart": "18:50",
+          "tokutenEnd": "19:50"
         }
       ]
     },
@@ -760,7 +723,7 @@
         "RURU:MERRY",
         "Lexari♡R"
       ],
-      "notes": "TicketDive連携 (アオハルブレイブ)",
+      "notes": "TicketDive連携 (���オハルブレイブ)",
       "schedules": [
         {
           "groupId": "grp-1792289697131",
@@ -1626,7 +1589,7 @@
     },
     {
       "id": "td-iDLAND13",
-      "title": "あいらんど Chapter13",
+      "title": "��いらんど Chapter13",
       "date": "2026-11-24",
       "venue": "SHIBUYA VIDENT",
       "openTime": "12:00",
